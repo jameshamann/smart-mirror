@@ -26,7 +26,7 @@ class App extends Component {
     return (
       <div className="App">
         <Home />
-         <p className="App-intro">{this.state.response}</p>
+         <p className="App-intro" style={{color: 'white'}}>{this.state.response}</p>
       </div>
     );
   }
