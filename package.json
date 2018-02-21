@@ -1,0 +1,11 @@
+{
+  "name": "Smart_Mirror_App",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"cd react-backend && npm start\" \"cd client && yarn start\""
+  },
+  "dependencies": {
+    "concurrently": "^3.5.1"
+  }
+}
