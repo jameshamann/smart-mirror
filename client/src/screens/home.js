@@ -19,6 +19,11 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    setInterval(() => {
+        this.setState({
+          time: new Date().toLocaleString()
+        })
+    }, 1000);
 
   }
 
