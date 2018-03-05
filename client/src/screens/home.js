@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AnalogClock, { Themes } from 'react-analog-clock';
 import { Grid } from 'semantic-ui-react'
 
+
 let time = new Date().toLocaleString();
 
 
@@ -34,6 +35,7 @@ class Home extends Component {
         <br />
           <AnalogClock theme={Themes.dark} gmtOffset={'+1'} />
           <p className="App-intro" style={{color: 'white'}}>{this.state.time}</p>
+          <p style={{color: 'white'}}>Hello James Hamann!</p>
 
         </Grid.Column>
       </Grid.Row>
