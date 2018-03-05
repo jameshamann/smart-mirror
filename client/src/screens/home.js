@@ -30,7 +30,7 @@ class Home extends Component {
 
   render() {
     const now = Date.now()
-    const dat = moment(now).format();
+    const dat = moment().format('MMMM Do YYYY, h:mm a')
 
 
     return (
@@ -41,14 +41,13 @@ class Home extends Component {
       <Card style={{backgroundColor: 'black'}}>
     <Card.Content>
       <Card.Header style={{color: 'white'}}>
-        James Hamann
+        {dat}
       </Card.Header>
       <Card.Meta>
         <span className='date'>
         </span>
       </Card.Meta>
       <Card.Description style={{color: 'white'}}>
-      {dat}
       </Card.Description>
     </Card.Content>
 
