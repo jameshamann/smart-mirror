@@ -14,17 +14,31 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: new Date().toLocaleString()
+      time: new Date().toLocaleString(),
+      weatherData: {}
     };
   }
 
   componentDidMount() {
+    var self = this;
+    var dat = this.state.weatherData
+    fetch('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=e064e1033e86a9347cfcc7da69705933')
+    .then(function(weather) {
+      return weather.json()
+      console.log(weather.json())
+    }).then(function(weather) {
+      self.setState({
+          weatherData: weather,
+        })
+    })
     setInterval(() => {
+
+
         this.setState({
           time: new Date().toLocaleString()
         })
     }, 1000);
-
+    console.log(this.state.weatherData)
   }
 
 
@@ -38,29 +52,55 @@ class Home extends Component {
 
       <Grid columns='equal'>
       <Grid.Row>
-      <Card style={{backgroundColor: 'black'}}>
-    <Card.Content>
-      <Card.Header style={{color: 'white'}}>
-        {dat}
-      </Card.Header>
-      <Card.Meta>
-        <span className='date'>
-        </span>
-      </Card.Meta>
-      <Card.Description style={{color: 'white'}}>
-      </Card.Description>
-    </Card.Content>
-
-  </Card>
         <Grid.Column>
-        <br />
+        <Card style={{backgroundColor: 'black'}}>
+        <Card.Content>
+        <Card.Header style={{color: 'white'}}>
+          {dat}
+        </Card.Header>
+        <Card.Meta>
+          <span className='date'>
+          </span>
+        </Card.Meta>
+        <Card.Description style={{color: 'white'}}>
+        </Card.Description>
+        </Card.Content>
 
-
+        </Card>
         </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
         <Grid.Column>
-        <br />
+        <Card style={{backgroundColor: 'black'}}>
+        <Card.Content>
+        <Card.Header style={{color: 'white'}}>
+          20°C <Icon name="cloud" />
+        </Card.Header>
+        <Card.Meta>
+          <span className='date'>
+          </span>
+        </Card.Meta>
+        <Card.Description style={{color: 'white'}}>
+        {Object.keys(this.state.weatherData)}
+
+        </Card.Description>
+        </Card.Content>
+
+        </Card>
+        </Grid.Column>
+        <Grid.Column>
+        <Card style={{backgroundColor: 'black'}}>
+        <Card.Content>
+        <Card.Header style={{color: 'white'}}>
+          Hey James Hamann!
+        </Card.Header>
+        <Card.Meta>
+          <span className='date'>
+          </span>
+        </Card.Meta>
+        <Card.Description style={{color: 'white'}}>
+        </Card.Description>
+        </Card.Content>
+
+        </Card>
         </Grid.Column>
       </Grid.Row>
     </Grid>
