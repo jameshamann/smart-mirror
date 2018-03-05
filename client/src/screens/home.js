@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AnalogClock, { Themes } from 'react-analog-clock';
-import { Grid } from 'semantic-ui-react'
+import { Card, Icon, Image, Grid } from 'semantic-ui-react'
 import moment from 'moment';
 import _ from 'lodash'
 
@@ -38,10 +38,24 @@ class Home extends Component {
 
       <Grid columns='equal'>
       <Grid.Row>
+      <Card style={{backgroundColor: 'black'}}>
+    <Card.Content>
+      <Card.Header style={{color: 'white'}}>
+        James Hamann
+      </Card.Header>
+      <Card.Meta>
+        <span className='date'>
+        </span>
+      </Card.Meta>
+      <Card.Description style={{color: 'white'}}>
+      {dat}
+      </Card.Description>
+    </Card.Content>
+
+  </Card>
         <Grid.Column>
         <br />
-        <p style={{color: 'white'}}>{dat}</p>
-          <p style={{color: 'white'}}>Hello James Hamann!</p>
+
 
         </Grid.Column>
       </Grid.Row>
