@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import AnalogClock, { Themes } from 'react-analog-clock';
 import { Grid } from 'semantic-ui-react'
+import moment from 'moment';
+import _ from 'lodash'
+
 
 
 let time = new Date().toLocaleString();
@@ -16,16 +19,15 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    setInterval(() => {
-        this.setState({
-          time: new Date().toLocaleString()
-        })
-    }, 1000);
 
   }
 
 
   render() {
+    const now = Date.now()
+    const dat = moment(now).format();
+
+
     return (
     <div className="container">
 
@@ -33,8 +35,7 @@ class Home extends Component {
       <Grid.Row>
         <Grid.Column>
         <br />
-          <AnalogClock theme={Themes.dark} gmtOffset={'+1'} />
-          <p className="App-intro" style={{color: 'white'}}>{this.state.time}</p>
+        <p style={{color: 'white'}}>{dat}</p>
           <p style={{color: 'white'}}>Hello James Hamann!</p>
 
         </Grid.Column>

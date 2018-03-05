@@ -4,9 +4,13 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "loadash": "^1.0.0",
+    "moment": "^2.21.0",
+    "moment-timezone": "^0.5.14",
     "react": "^16.2.0",
     "react-analog-clock": "^2.0.0",
     "react-dom": "^16.2.0",
+    "react-moment": "^0.7.0",
     "react-scripts": "1.1.0",
     "semantic-ui-react": "^0.78.2"
   },
