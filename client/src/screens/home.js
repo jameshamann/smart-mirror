@@ -15,20 +15,22 @@ class Home extends Component {
     super(props);
     this.state = {
       time: new Date().toLocaleString(),
-      weatherData: {}
+      weatherData: '',
+      weatherDesc: ''
     };
   }
 
   componentDidMount() {
     var self = this;
     var dat = this.state.weatherData
-    fetch('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=e064e1033e86a9347cfcc7da69705933')
+    fetch('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
     .then(function(weather) {
       return weather.json()
       console.log(weather.json())
     }).then(function(weather) {
       self.setState({
-          weatherData: weather,
+          weatherData: weather.main.temp,
+          weatherDesc: weather.weather.icon
         })
     })
     setInterval(() => {
@@ -45,6 +47,7 @@ class Home extends Component {
   render() {
     const now = Date.now()
     const dat = moment().format('MMMM Do YYYY, h:mm a')
+    const {weatherData, weatherDesc} = this.state;
 
 
     return (
@@ -79,7 +82,9 @@ class Home extends Component {
           </span>
         </Card.Meta>
         <Card.Description style={{color: 'white'}}>
-        {Object.keys(this.state.weatherData)}
+          {this.state.weatherData}
+          {this.state.weatherDesc}
+
 
         </Card.Description>
         </Card.Content>
