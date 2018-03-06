@@ -5,6 +5,7 @@ import moment from 'moment';
 import _ from 'lodash'
 import Calendar from 'react-calendar';
 import tz from 'moment-timezone'
+import Clock from './clock'
 
 
 
@@ -147,13 +148,15 @@ formatDate(value, format){
         <Card style={{backgroundColor: 'black'}}>
         <Card.Content>
         <Card.Header style={{color: 'white'}}>
-        <Icon name="clock" /> {tim} {timeZoneAbbr} 
+        <Icon name="clock" /> {tim} {timeZoneAbbr}
         </Card.Header>
         <Card.Meta>
           <span className='date'>
+
           </span>
         </Card.Meta>
         <Card.Description>
+          <Clock />
         </Card.Description>
         </Card.Content>
 
