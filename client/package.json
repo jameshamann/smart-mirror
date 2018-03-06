@@ -9,6 +9,8 @@
     "moment": "^2.21.0",
     "moment-timezone": "^0.5.14",
     "node-sass": "^4.7.2",
+    "random-fact": "^1.1.0",
+    "random-facts": "^1.0.6",
     "react": "^16.2.0",
     "react-analog-clock": "^2.0.0",
     "react-calendar": "^2.13.1",

@@ -8,7 +8,9 @@ import tz from 'moment-timezone'
 import Clock from './clock'
 
 
+var fact = require('random-fact')
 
+var rf = require('random-facts')
 
 let time = new Date().toLocaleString();
 
@@ -26,7 +28,8 @@ class Home extends Component {
       weatherSunset: '',
       weatherSunrise: '',
       date: new Date(),
-      currentUser: 'James'
+      currentUser: 'James',
+      fact: rf.randomFact()
     };
   }
 
@@ -36,7 +39,8 @@ class Home extends Component {
     var dat = this.state.weatherData
     this.setState({
         time: new Date().toLocaleString(),
-        date: new Date()
+        date: new Date(),
+        fact: rf.randomFact()
       })
     fetch('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
     .then(function(weather) {
@@ -114,7 +118,7 @@ formatDate(value, format){
     const timeZone = moment.tz.guess();
     const timeZoneAbbr = moment.tz(timeZone).zoneAbbr()
     console.log(timeZone)
-    const {date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise} = this.state;
+    const {fact, date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise} = this.state;
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
     console.log(this.formatDate(this.state.date, 'dd'))
@@ -208,13 +212,14 @@ formatDate(value, format){
         <Card style={{backgroundColor: 'black'}}>
         <Card.Content>
         <Card.Header style={{color: 'white'}}>
-          <p>Random Fact!</p>
+
         </Card.Header>
         <Card.Meta>
           <span className='date'>
           </span>
         </Card.Meta>
         <Card.Description style={{color: 'white'}}>
+          {this.state.fact}
         </Card.Description>
         </Card.Content>
 
