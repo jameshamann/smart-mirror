@@ -3,6 +3,8 @@ import AnalogClock, { Themes } from 'react-analog-clock';
 import { Card, Icon, Image, Grid } from 'semantic-ui-react'
 import moment from 'moment';
 import _ from 'lodash'
+import Calendar from 'react-calendar';
+
 
 
 
@@ -18,17 +20,22 @@ class Home extends Component {
       weatherTemp: '',
       weatherDesc: '',
       weatherCity: '',
-      weatherIcon: ''
+      weatherIcon: '',
+      weatherSunset: '',
+      weatherSunrise: '',
+      date: new Date(),
+      currentUser: 'James'
     };
   }
 
-  updateWeather(){
-
-  }
-
   componentDidMount() {
+    console.log()
     var self = this;
     var dat = this.state.weatherData
+    this.setState({
+        time: new Date().toLocaleString(),
+        date: new Date()
+      })
     fetch('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
     .then(function(weather) {
       return weather.json()
@@ -38,7 +45,9 @@ class Home extends Component {
           weatherTemp: weather.main.temp,
           weatherDesc: weather.weather[0].description,
           weatherCity: weather.name,
-          weatherIcon: weather.weather[0].icon
+          weatherIcon: weather.weather[0].icon,
+          weatherSunrise: weather.sys.sunrise,
+          weatherSunset: weather.sys.sunset
         })
     })
       setInterval(() => {
@@ -57,11 +66,14 @@ class Home extends Component {
             weatherTemp: weather.main.temp,
             weatherDesc: weather.weather[0].description,
             weatherCity: weather.name,
-            weatherIcon: weather.weather[0].icon
+            weatherIcon: weather.weather[0].icon,
+            weatherSunrise: weather.sys.sunrise,
+            weatherSunset: weather.sys.sunset
           })
       })
       this.setState({
-          time: new Date().toLocaleString()
+          time: new Date().toLocaleString(),
+          date: new Date()
         })
     }, 30000);
   }
@@ -72,12 +84,12 @@ toTitleCase(str)
       return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     }
 
-userGreeting(time){
-  console.log(time)
-  if (time < '12:00') {
+userGreeting(date){
+  console.log(date)
+  if (date < '12') {
     return "Good Morning"
   }
-  else if (time < '17:00') {
+  else if (date < '17') {
     return "Good Afternoon"
   }
   else {
@@ -85,11 +97,16 @@ userGreeting(time){
   }
 }
 
+onChange = date => this.setState({ date })
+
+
   render() {
+    console.log(this.state.date.getHours())
     const now = Date.now()
     const dat = moment().format('MMMM Do YYYY, h:mm a')
-    const {weatherTemp, weatherDesc, weatherCity, weatherIcon} = this.state;
-    console.log(this.userGreeting(this.state.time))
+    const {date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise} = this.state;
+    const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
+    const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
 
     return (
     <div className="container">
@@ -107,6 +124,10 @@ userGreeting(time){
           </span>
         </Card.Meta>
         <Card.Description style={{color: 'white'}}>
+          <Calendar
+            onChange={this.onChange}
+            value={this.state.date}
+          />
         </Card.Description>
         </Card.Content>
 
@@ -126,7 +147,11 @@ userGreeting(time){
           <br />
           {this.toTitleCase(this.state.weatherDesc)}
           <Image src={"http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"} />
-
+          <br />
+          <Icon name="sun" /> {sunrise}
+          <br />
+          <Icon name="moon" />
+          {sunset}
         </Card.Description>
         </Card.Content>
 
@@ -136,7 +161,7 @@ userGreeting(time){
         <Card style={{backgroundColor: 'black'}}>
         <Card.Content>
         <Card.Header style={{color: 'white'}}>
-          {this.userGreeting(this.state.time)} James,
+        {this.userGreeting(this.state.date.getHours())}, {this.state.currentUser}
           <p>Have a Great Day!</p>
         </Card.Header>
         <Card.Meta>
