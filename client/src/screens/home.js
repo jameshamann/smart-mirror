@@ -156,6 +156,7 @@ formatDate(value, format){
           </span>
         </Card.Meta>
         <Card.Description>
+        <br />
           <Clock />
         </Card.Description>
         </Card.Content>
