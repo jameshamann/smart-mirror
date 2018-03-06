@@ -4,6 +4,7 @@ import { Card, Icon, Image, Grid } from 'semantic-ui-react'
 import moment from 'moment';
 import _ from 'lodash'
 import Calendar from 'react-calendar';
+import tz from 'moment-timezone'
 
 
 
@@ -105,9 +106,13 @@ formatDate(value, format){
 
 
   render() {
-    console.log(this.state.date.getHours())
+    console.log(moment())
     const now = Date.now()
-    const dat = moment().format('MMMM Do YYYY, h:mm a')
+    const dat = moment().format('dddd MMMM Do YYYY')
+    const tim = moment().format('h:mm a')
+    const timeZone = moment.tz.guess();
+    const timeZoneAbbr = moment.tz(timeZone).zoneAbbr()
+    console.log(timeZone)
     const {date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise} = this.state;
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
@@ -133,6 +138,22 @@ formatDate(value, format){
             onChange={this.onChange}
             value={this.state.date}
           />
+        </Card.Description>
+        </Card.Content>
+
+        </Card>
+        </Grid.Column>
+        <Grid.Column>
+        <Card style={{backgroundColor: 'black'}}>
+        <Card.Content>
+        <Card.Header style={{color: 'white'}}>
+        <Icon name="clock" /> {tim} {timeZoneAbbr} 
+        </Card.Header>
+        <Card.Meta>
+          <span className='date'>
+          </span>
+        </Card.Meta>
+        <Card.Description>
         </Card.Description>
         </Card.Content>
 
