@@ -99,6 +99,10 @@ userGreeting(date){
 
 onChange = date => this.setState({ date })
 
+formatDate(value, format){
+  return moment(value).format(format)
+}
+
 
   render() {
     console.log(this.state.date.getHours())
@@ -107,6 +111,7 @@ onChange = date => this.setState({ date })
     const {date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise} = this.state;
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
+    console.log(this.formatDate(this.state.date, 'dd'))
 
     return (
     <div className="container">
@@ -123,7 +128,7 @@ onChange = date => this.setState({ date })
           <span className='date'>
           </span>
         </Card.Meta>
-        <Card.Description style={{color: 'white'}}>
+        <Card.Description>
           <Calendar
             onChange={this.onChange}
             value={this.state.date}
