@@ -22,6 +22,10 @@ class Home extends Component {
     };
   }
 
+  updateWeather(){
+
+  }
+
   componentDidMount() {
     var self = this;
     var dat = this.state.weatherData
@@ -37,26 +41,55 @@ class Home extends Component {
           weatherIcon: weather.weather[0].icon
         })
     })
+      setInterval(() => {
+
+          console.log("Hello")
+          console.log(this.state.weatherTemp)
+        }, 100000);
+
     setInterval(() => {
-
-
-        this.setState({
+      fetch('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
+      .then(function(weather) {
+        return weather.json()
+        console.log(weather.json())
+      }).then(function(weather) {
+        self.setState({
+            weatherTemp: weather.main.temp,
+            weatherDesc: weather.weather[0].description,
+            weatherCity: weather.name,
+            weatherIcon: weather.weather[0].icon
+          })
+      })
+      this.setState({
           time: new Date().toLocaleString()
         })
-    }, 1000);
-    console.log(this.state.weatherTemp)
+    }, 30000);
   }
+
 
 toTitleCase(str)
     {
       return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     }
 
+userGreeting(time){
+  console.log(time)
+  if (time < '12:00') {
+    return "Good Morning"
+  }
+  else if (time < '17:00') {
+    return "Good Afternoon"
+  }
+  else {
+    return "Good Evening"
+  }
+}
+
   render() {
     const now = Date.now()
     const dat = moment().format('MMMM Do YYYY, h:mm a')
     const {weatherTemp, weatherDesc, weatherCity, weatherIcon} = this.state;
-
+    console.log(this.userGreeting(this.state.time))
 
     return (
     <div className="container">
@@ -103,7 +136,8 @@ toTitleCase(str)
         <Card style={{backgroundColor: 'black'}}>
         <Card.Content>
         <Card.Header style={{color: 'white'}}>
-          Hey James Hamann!
+          {this.userGreeting(this.state.time)} James,
+          <p>Have a Great Day!</p>
         </Card.Header>
         <Card.Meta>
           <span className='date'>
