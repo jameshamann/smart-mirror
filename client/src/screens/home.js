@@ -167,17 +167,17 @@ formatDate(value, format){
         <Card style={{backgroundColor: 'black'}}>
         <Card.Content>
         <Card.Header style={{color: 'white'}}>
-        {this.state.weatherCity} {this.state.weatherTemp}°C
+        {this.state.weatherCity} {this.state.weatherTemp}°C <br />
+        <Image src={"http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"} /> <br />
+        {this.toTitleCase(this.state.weatherDesc)}
+
         </Card.Header>
         <Card.Meta>
           <span className='date'>
           </span>
         </Card.Meta>
         <Card.Description style={{color: 'white'}}>
-          <br />
-          {this.toTitleCase(this.state.weatherDesc)}
-          <Image src={"http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"} />
-          <br />
+        <br />
           <Icon name="sun" /> {sunrise}
           <br />
           <Icon name="moon" />
