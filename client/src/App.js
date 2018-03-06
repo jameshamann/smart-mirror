@@ -4,13 +4,16 @@ import './App.css';
 import Home from './screens/home.js'
 
 
+
 class App extends Component {
-  state = {users: []}
+  state = {facts: []}
 
   componentDidMount() {
-    fetch('/users')
-      .then(res => res.json())
-      .then(users => this.setState({ users }));
+    // fetch('/facts')
+    //   .then(function(res) {
+    //     console.log(res.json())
+    //   })
+
   }
 
 
