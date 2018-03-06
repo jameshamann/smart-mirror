@@ -204,6 +204,22 @@ formatDate(value, format){
 
         </Card>
         </Grid.Column>
+        <Grid.Column>
+        <Card style={{backgroundColor: 'black'}}>
+        <Card.Content>
+        <Card.Header style={{color: 'white'}}>
+          <p>Random Fact!</p>
+        </Card.Header>
+        <Card.Meta>
+          <span className='date'>
+          </span>
+        </Card.Meta>
+        <Card.Description style={{color: 'white'}}>
+        </Card.Description>
+        </Card.Content>
+
+        </Card>
+        </Grid.Column>
       </Grid.Row>
     </Grid>
     </div>
