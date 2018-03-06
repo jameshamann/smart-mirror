@@ -15,8 +15,10 @@ class Home extends Component {
     super(props);
     this.state = {
       time: new Date().toLocaleString(),
-      weatherData: '',
-      weatherDesc: ''
+      weatherTemp: '',
+      weatherDesc: '',
+      weatherCity: '',
+      weatherIcon: ''
     };
   }
 
@@ -29,8 +31,10 @@ class Home extends Component {
       console.log(weather.json())
     }).then(function(weather) {
       self.setState({
-          weatherData: weather.main.temp,
-          weatherDesc: weather.weather.icon
+          weatherTemp: weather.main.temp,
+          weatherDesc: weather.weather[0].description,
+          weatherCity: weather.name,
+          weatherIcon: weather.weather[0].icon
         })
     })
     setInterval(() => {
@@ -40,14 +44,18 @@ class Home extends Component {
           time: new Date().toLocaleString()
         })
     }, 1000);
-    console.log(this.state.weatherData)
+    console.log(this.state.weatherTemp)
   }
 
+toTitleCase(str)
+    {
+      return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    }
 
   render() {
     const now = Date.now()
     const dat = moment().format('MMMM Do YYYY, h:mm a')
-    const {weatherData, weatherDesc} = this.state;
+    const {weatherTemp, weatherDesc, weatherCity, weatherIcon} = this.state;
 
 
     return (
@@ -75,16 +83,16 @@ class Home extends Component {
         <Card style={{backgroundColor: 'black'}}>
         <Card.Content>
         <Card.Header style={{color: 'white'}}>
-          20°C <Icon name="cloud" />
+        {this.state.weatherCity} {this.state.weatherTemp}°C
         </Card.Header>
         <Card.Meta>
           <span className='date'>
           </span>
         </Card.Meta>
         <Card.Description style={{color: 'white'}}>
-          {this.state.weatherData}
-          {this.state.weatherDesc}
-
+          <br />
+          {this.toTitleCase(this.state.weatherDesc)}
+          <Image src={"http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"} />
 
         </Card.Description>
         </Card.Content>
