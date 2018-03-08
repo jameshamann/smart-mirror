@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "children": "^0.2.3",
     "css-loader": "^0.28.10",
     "loadash": "^1.0.0",
     "moment": "^2.21.0",

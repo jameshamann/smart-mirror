@@ -8,10 +8,6 @@ import tz from 'moment-timezone'
 import Clock from './clock'
 
 
-var fact = require('random-fact')
-
-var rf = require('random-facts')
-
 let time = new Date().toLocaleString();
 
 
@@ -29,7 +25,7 @@ class Home extends Component {
       weatherSunrise: '',
       date: new Date(),
       currentUser: 'James',
-      fact: rf.randomFact()
+      fact: "lol"
     };
   }
 
@@ -40,7 +36,7 @@ class Home extends Component {
     this.setState({
         time: new Date().toLocaleString(),
         date: new Date(),
-        fact: rf.randomFact()
+        fact: "lol"
       })
     fetch('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
     .then(function(weather) {

@@ -19,10 +19,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App" style={{backgroundColor: "black"}}>
-        <Home />
-         <p className="App-intro" style={{color: 'white'}}>{this.state.response}</p>
-      </div>
+        <div className="App" style={{backgroundColor: "black"}}>
+          <Home />
+           <p className="App-intro" style={{color: 'white'}}>{this.state.response}</p>
+         </div>
     );
   }
 }
