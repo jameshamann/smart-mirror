@@ -10,14 +10,15 @@ var facts = require('./routes/facts');
 
 var app = express();
 
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.use(bodyParser.urlencoded({extended:false}));
 
 app.get('/', function(req, res) {
-
-  res.json("hello")
+  console.log('From the Server!')
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.get('/facts', function(req, res) {
