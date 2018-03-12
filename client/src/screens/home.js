@@ -124,7 +124,7 @@ formatDate(value, format){
       <Grid columns='equal'>
       <Grid.Row>
         <Grid.Column>
-        <Card style={{backgroundColor: 'black'}}>
+        <Card>
         <Card.Content>
         <Card.Header style={{color: 'white'}}>
           {dat}
@@ -144,7 +144,7 @@ formatDate(value, format){
         </Card>
         </Grid.Column>
         <Grid.Column>
-        <Card style={{backgroundColor: 'black'}}>
+        <Card>
         <Card.Content>
         <Card.Header style={{color: 'white'}}>
         <Icon name="clock" /> {tim} {timeZoneAbbr}
@@ -163,7 +163,7 @@ formatDate(value, format){
         </Card>
         </Grid.Column>
         <Grid.Column>
-        <Card style={{backgroundColor: 'black'}}>
+        <Card>
         <Card.Content>
         <Card.Header style={{color: 'white'}}>
         {this.state.weatherCity} {this.state.weatherTemp}°C <br />
@@ -187,7 +187,7 @@ formatDate(value, format){
         </Card>
         </Grid.Column>
         <Grid.Column>
-        <Card style={{backgroundColor: 'black'}}>
+        <Card>
         <Card.Content>
         <Card.Header style={{color: 'white'}}>
         {this.userGreeting(this.state.date.getHours())}, {this.state.currentUser}
@@ -204,7 +204,7 @@ formatDate(value, format){
         </Card>
         </Grid.Column>
         <Grid.Column>
-        <Card style={{backgroundColor: 'black'}}>
+        <Card>
         <Card.Content>
         <Card.Header style={{color: 'white'}}>
 
