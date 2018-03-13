@@ -11,6 +11,7 @@ app.on('ready', () => {
 
     mainWindow.setTitle('Miri');
     mainWindow.loadURL('http://localhost:3001');
+    mainWindow.setBackgroundColor("#000")
 
     mainWindow.on('closed', () => {
         mainWindow = null;
