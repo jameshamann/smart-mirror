@@ -1,10 +1,14 @@
 var awsIot = require('aws-iot-device-sdk');
 var app = require('./app');
+var express = require('express');
 
 
 
 
-  var server = app.listen(process.env.PORT || 3001, () => {
+var app = express();
+
+
+  var server = app.listen(process.env.PORT || 3000, () => {
   var host = server.address().address;
   var port = server.address().port;
 
@@ -16,7 +20,7 @@ var device = awsIot.device({
     keyPath: "/Users/jameshamann/Documents/Development/mac_os_iot_certs/Smart_Mirror_Mac.private.key",
     certPath: "/Users/jameshamann/Documents/Development/mac_os_iot_certs/Smart_Mirror_Mac.cert.pem",
     caPath: "/Users/jameshamann/Documents/Development/mac_os_iot_certs/root-CA.crt",
-    host: "zjo7hto1k82k.iot.eu-west-2.amazonaws.com"
+    host: "azjo7hto1k82k.iot.eu-west-2.amazonaws.com"
 });
 
 device
