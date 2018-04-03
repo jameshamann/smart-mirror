@@ -125,7 +125,7 @@ formatDate(value, format){
       <Grid columns='equal' style={{padding: '20px'}}>
       <Grid.Row>
         <Grid.Column>
-        <Card style={{backgroundColor: 'black'}}>
+        <Card style={{backgroundColor: 'black'}} color='black'>
         <Card.Content>
         <Card.Header style={{color: 'white'}}>
           {dat}
