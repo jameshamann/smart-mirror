@@ -121,7 +121,7 @@ formatDate(value, format){
 
     return (
 
-      <Grid columns='equal' style={{backgroundColor: 'black'}}>
+      <Grid columns='equal' style={{padding: '20px'}}>
       <Grid.Row>
         <Grid.Column>
         <Card style={{backgroundColor: 'black'}}>
