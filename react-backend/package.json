@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js && electron main.js"
+    "start": "concurrently \"node app.js\" \"electron main.js\""
   },
   "dependencies": {
     "Smart_Mirror_App": "file:..",
