@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AnalogClock, { Themes } from 'react-analog-clock';
-import { Card, Icon, Image, Grid } from 'semantic-ui-react'
+import { Card, Icon, Image, Grid, Header } from 'semantic-ui-react'
 import moment from 'moment';
 import _ from 'lodash'
 import Calendar from 'react-calendar';
@@ -125,85 +125,44 @@ formatDate(value, format){
       <Grid columns='equal' style={{padding: '20px'}}>
       <Grid.Row>
         <Grid.Column>
-        <Card style={{backgroundColor: 'black'}} color='black'>
-        <Card.Content>
-        <Card.Header style={{color: 'white'}}>
+        <Header style={{color: 'white'}}>
           {dat}
-        </Card.Header>
-        <Card.Meta>
-          <span className='date'>
-          </span>
-        </Card.Meta>
-        <Card.Description>
+        </Header>
+
           <Calendar
             onChange={this.onChange}
             value={this.state.date}
           />
-        </Card.Description>
-        </Card.Content>
 
-        </Card>
         </Grid.Column>
         <Grid.Column>
-        <Card style={{backgroundColor: 'black'}}>
-        <Card.Content>
-        <Card.Header style={{color: 'white'}}>
+
+        <Header style={{color: 'white'}}>
         <Icon name="clock" /> {tim} {timeZoneAbbr}
-        </Card.Header>
-        <Card.Meta>
-          <span className='date'>
-
-          </span>
-        </Card.Meta>
-        <Card.Description>
-        <br />
-        </Card.Description>
-        </Card.Content>
-
-        </Card>
+        </Header>
         </Grid.Column>
         <Grid.Column>
-        <Card style={{backgroundColor: 'black'}}>
-        <Card.Content>
-        <Card.Header style={{color: 'white'}}>
+        <Header style={{color: 'white'}}>
         {this.state.weatherCity} {this.state.weatherTemp}°C <br />
         <Image src={"http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"} /> <br />
         {this.toTitleCase(this.state.weatherDesc)}
 
-        </Card.Header>
-        <Card.Meta>
-          <span className='date'>
-          </span>
-        </Card.Meta>
-        <Card.Description style={{color: 'white'}}>
+        </Header>
         <br />
           <Icon name="sun" /> {sunrise}
           <br />
           <Icon name="moon" />
           {sunset}
-        </Card.Description>
-        </Card.Content>
 
-        </Card>
         </Grid.Column>
         <Grid.Column>
-        <Card style={{backgroundColor: 'black'}}>
-        <Card.Content>
-        <Card.Header style={{color: 'white'}}>
+        <Header style={{color: 'white'}}>
         {this.userGreeting(this.state.date.getHours())}, {this.state.currentUser}
           <p>Have a Great Day!</p>
-        </Card.Header>
-        <Card.Meta>
-          <span className='date'>
-          </span>
-        </Card.Meta>
-        <Card.Description style={{color: 'white'}}>
-        </Card.Description>
-        </Card.Content>
-
-        </Card>
+        </Header>
+      
         </Grid.Column>
-        
+
       </Grid.Row>
     </Grid>
 
