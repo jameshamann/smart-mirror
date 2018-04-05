@@ -1,5 +1,6 @@
 
 .App {
+  font-family: 'Roboto', sans-serif;
   text-align: center;
   background-color: black;
 }
@@ -37,6 +38,7 @@
 }
 
 .clock-container {
+  font-family: 'Roboto', sans-serif;
   position: relative;
   width: 80%;
   overflow: hidden;
