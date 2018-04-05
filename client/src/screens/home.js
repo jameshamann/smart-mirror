@@ -157,7 +157,6 @@ formatDate(value, format){
         </Card.Meta>
         <Card.Description>
         <br />
-          <Clock />
         </Card.Description>
         </Card.Content>
 
@@ -204,23 +203,7 @@ formatDate(value, format){
 
         </Card>
         </Grid.Column>
-        <Grid.Column>
-        <Card style={{backgroundColor: 'black'}}>
-        <Card.Content>
-        <Card.Header style={{color: 'white'}}>
-
-        </Card.Header>
-        <Card.Meta>
-          <span className='date'>
-          </span>
-        </Card.Meta>
-        <Card.Description style={{color: 'white'}}>
-          {this.state.fact}
-        </Card.Description>
-        </Card.Content>
-
-        </Card>
-        </Grid.Column>
+        
       </Grid.Row>
     </Grid>
 
