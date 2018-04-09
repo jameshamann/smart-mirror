@@ -5,6 +5,10 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import 'semantic-ui-css/semantic.min.css'
 import WebFont from 'webfontloader';
+import Amplify from 'aws-amplify';
+import aws_exports from './aws-exports';
+
+Amplify.configure(aws_exports);
 
 WebFont.load({
   google: {
