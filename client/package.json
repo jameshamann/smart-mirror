@@ -4,6 +4,8 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "aws-amplify": "^0.2.14",
+    "aws-amplify-react": "^0.1.38",
     "children": "^0.2.3",
     "css-loader": "^0.28.10",
     "loadash": "^1.0.0",
