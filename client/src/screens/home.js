@@ -131,7 +131,7 @@ formatDate(value, format){
       </Grid.Row>
       <Grid.Row>
         <Grid.Column>
-        <Header style={{color: 'white'}}>
+        <Header style={{color: 'white', fontFamily: 'Oswald'}}>
           {dat}
         </Header>
 
@@ -141,7 +141,7 @@ formatDate(value, format){
 
         </Grid.Column>
         <Grid.Column>
-        <Header style={{color: 'white'}}>
+        <Header style={{color: 'white', fontFamily: 'Oswald'}}>
         {this.state.weatherCity} {this.state.weatherTemp}°C <br />
         <Image src={"http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"} /> <br />
         {this.toTitleCase(this.state.weatherDesc)}
@@ -169,7 +169,7 @@ formatDate(value, format){
         <Grid.Row>
         <Grid.Column>
           <Header style={{color: 'white'}}>
-            <p><Icon name="clock" /> {tim} {timeZoneAbbr}</p>
+            <p style={{fontFamily: 'Oswald'}}> {tim} {timeZoneAbbr}</p>
           </Header>
         </Grid.Column>
         </Grid.Row>
@@ -179,9 +179,9 @@ formatDate(value, format){
         </Grid.Row>
         <Grid.Row>
         <Grid.Column>
-        <Header style={{color: 'white'}}>
+        <Header style={{color: 'white', fontFamily: 'Oswald'}}>
         {this.userGreeting(this.state.date.getHours())}, {this.state.currentUser}
-          <p>Have a Great Day!</p>
+          <p style={{fontFamily: 'Oswald'}}>Have a Great Day!</p>
         </Header>
 
         </Grid.Column>
