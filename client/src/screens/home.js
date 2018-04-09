@@ -6,6 +6,8 @@ import _ from 'lodash'
 import Calendar from 'react-calendar';
 import tz from 'moment-timezone'
 import Clock from './clock'
+import Button from 'material-ui/Button';
+
 
 
 let time = new Date().toLocaleString();
@@ -110,7 +112,7 @@ formatDate(value, format){
   render() {
     console.log(moment())
     const now = Date.now()
-    const dat = moment().format('dddd MMMM Do YYYY')
+    const dat = moment().format('dddd, MMMM Do YYYY')
     const tim = moment().format('h:mm a')
     const timeZone = moment.tz.guess();
     const timeZoneAbbr = moment.tz(timeZone).zoneAbbr()
@@ -124,25 +126,22 @@ formatDate(value, format){
 
       <Grid columns='equal' style={{padding: '20px'}}>
       <Grid.Row>
+      </Grid.Row>
+      <Grid.Row>
+      </Grid.Row>
+      <Grid.Row>
         <Grid.Column>
-        <Header style={{color: 'white'}}>
+        <Header style={{color: 'white', fontFamily: 'Roboto'}}>
           {dat}
         </Header>
 
-          <Calendar
-            onChange={this.onChange}
-            value={this.state.date}
-          />
-
         </Grid.Column>
         <Grid.Column>
 
-        <Header style={{color: 'white'}}>
-        <Icon name="clock" /> {tim} {timeZoneAbbr}
-        </Header>
+
         </Grid.Column>
         <Grid.Column>
-        <Header style={{color: 'white'}}>
+        <Header style={{color: 'white', fontFamily: 'Roboto'}}>
         {this.state.weatherCity} {this.state.weatherTemp}°C <br />
         <Image src={"http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"} /> <br />
         {this.toTitleCase(this.state.weatherDesc)}
@@ -153,14 +152,36 @@ formatDate(value, format){
           <br />
           <Icon name="moon" />
           {sunset}
-
         </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
         <Grid.Column>
-        <Header style={{color: 'white'}}>
+          <Header style={{color: 'white'}}>
+            <p style={{fontFamily: 'Roboto'}}> {tim} {timeZoneAbbr}</p>
+          </Header>
+        </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        <Grid.Column>
+        <Header style={{color: 'white', fontFamily: 'Roboto'}}>
         {this.userGreeting(this.state.date.getHours())}, {this.state.currentUser}
-          <p>Have a Great Day!</p>
+          <p style={{fontFamily: 'Roboto'}}>Have a Great Day!</p>
         </Header>
-      
+
         </Grid.Column>
 
       </Grid.Row>
