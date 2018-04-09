@@ -6,6 +6,8 @@ import _ from 'lodash'
 import Calendar from 'react-calendar';
 import tz from 'moment-timezone'
 import Clock from './clock'
+import Button from 'material-ui/Button';
+
 
 
 let time = new Date().toLocaleString();
@@ -129,17 +131,10 @@ formatDate(value, format){
           {dat}
         </Header>
 
-          <Calendar
-            onChange={this.onChange}
-            value={this.state.date}
-          />
-
         </Grid.Column>
         <Grid.Column>
 
-        <Header style={{color: 'white'}}>
-        <Icon name="clock" /> {tim} {timeZoneAbbr}
-        </Header>
+
         </Grid.Column>
         <Grid.Column>
         <Header style={{color: 'white'}}>
@@ -153,14 +148,38 @@ formatDate(value, format){
           <br />
           <Icon name="moon" />
           {sunset}
-
         </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        <Grid.Column>
+          <Header style={{color: 'white'}}>
+            <p><Icon name="clock" /> {tim} {timeZoneAbbr}</p>
+          </Header>
+        </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
         <Grid.Column>
         <Header style={{color: 'white'}}>
         {this.userGreeting(this.state.date.getHours())}, {this.state.currentUser}
           <p>Have a Great Day!</p>
         </Header>
-      
+
         </Grid.Column>
 
       </Grid.Row>
