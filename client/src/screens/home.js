@@ -112,7 +112,7 @@ formatDate(value, format){
   render() {
     console.log(moment())
     const now = Date.now()
-    const dat = moment().format('dddd MMMM Do YYYY')
+    const dat = moment().format('dddd, MMMM Do YYYY')
     const tim = moment().format('h:mm a')
     const timeZone = moment.tz.guess();
     const timeZoneAbbr = moment.tz(timeZone).zoneAbbr()
@@ -131,7 +131,7 @@ formatDate(value, format){
       </Grid.Row>
       <Grid.Row>
         <Grid.Column>
-        <Header style={{color: 'white', fontFamily: 'Oswald'}}>
+        <Header style={{color: 'white', fontFamily: 'Roboto'}}>
           {dat}
         </Header>
 
@@ -141,7 +141,7 @@ formatDate(value, format){
 
         </Grid.Column>
         <Grid.Column>
-        <Header style={{color: 'white', fontFamily: 'Oswald'}}>
+        <Header style={{color: 'white', fontFamily: 'Roboto'}}>
         {this.state.weatherCity} {this.state.weatherTemp}°C <br />
         <Image src={"http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"} /> <br />
         {this.toTitleCase(this.state.weatherDesc)}
@@ -169,19 +169,17 @@ formatDate(value, format){
         <Grid.Row>
         <Grid.Column>
           <Header style={{color: 'white'}}>
-            <p style={{fontFamily: 'Oswald'}}> {tim} {timeZoneAbbr}</p>
+            <p style={{fontFamily: 'Roboto'}}> {tim} {timeZoneAbbr}</p>
           </Header>
         </Grid.Column>
         </Grid.Row>
         <Grid.Row>
         </Grid.Row>
         <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
         <Grid.Column>
-        <Header style={{color: 'white', fontFamily: 'Oswald'}}>
+        <Header style={{color: 'white', fontFamily: 'Roboto'}}>
         {this.userGreeting(this.state.date.getHours())}, {this.state.currentUser}
-          <p style={{fontFamily: 'Oswald'}}>Have a Great Day!</p>
+          <p style={{fontFamily: 'Roboto'}}>Have a Great Day!</p>
         </Header>
 
         </Grid.Column>
