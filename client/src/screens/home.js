@@ -126,6 +126,10 @@ formatDate(value, format){
 
       <Grid columns='equal' style={{padding: '20px'}}>
       <Grid.Row>
+      </Grid.Row>
+      <Grid.Row>
+      </Grid.Row>
+      <Grid.Row>
         <Grid.Column>
         <Header style={{color: 'white'}}>
           {dat}
