@@ -8,6 +8,7 @@ var index = require('./routes/index');
 var facts = require('./routes/facts');
 var FeedParser = require('feedparser');
 var request = require('request'); // for fetching the feed
+var proxy = require('http-proxy-middleware');
 
 var app = express();
 
@@ -35,8 +36,13 @@ app.get('/facts', function(req, res) {
     }]);
 });
 
-app.get('/news', function(req, res) {
-  http.get('http://feeds.bbci.co.uk/news/rss.xml', (res) => {
+var callback = function(res){
+  console.log("HELLO")
+  return res;
+}
+
+var getNews = function() {
+  http.get('http://feeds.bbci.co.uk/news/rss.xml', callback, function(res) {
     if (res.statusCode != 200) {
       console.error(new Error(`status code ${res.statusCode}`));
       return;
@@ -54,10 +60,14 @@ app.get('/news', function(req, res) {
     });
     parser.on('end', () => {
       console.log(parser.done());
+      return parser.done();
     });
-  });
+  })
+}
 
-});
+app.get('/news', function(req, res) {
+    console.log(getNews())
+  });
 
 // view engine setup
 var port = process.env.PORT || 3001;

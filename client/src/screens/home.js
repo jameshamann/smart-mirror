@@ -32,13 +32,20 @@ class Home extends Component {
     };
   }
 
-  componentDidMount() {
+  getNews(){
+    console.log("NEWS")
     fetch('/news')
     .then(function(res){
       console.log(res)
       return res
+    }).then(function(json){
+      console.log("HELLO")
+      console.log(json)
     })
-    console.log()
+  }
+
+  componentDidMount() {
+    this.getNews()
     var self = this;
     var dat = this.state.weatherData
     this.setState({

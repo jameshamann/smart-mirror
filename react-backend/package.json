@@ -23,6 +23,7 @@
     "feedparser": "^2.2.9",
     "fs": "0.0.1-security",
     "http": "0.0.0",
+    "http-proxy-middleware": "^0.18.0",
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
     "mqtt": "^2.15.3",
