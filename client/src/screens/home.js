@@ -33,6 +33,11 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    fetch('/news')
+    .then(function(res){
+      console.log(res)
+      return res
+    })
     console.log()
     var self = this;
     var dat = this.state.weatherData

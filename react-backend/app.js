@@ -4,13 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var index = require('./routes/index');
 var facts = require('./routes/facts');
 var FeedParser = require('feedparser');
 var request = require('request'); // for fetching the feed
 
 var app = express();
+
+const FeedMe = require('feedme');
+const http = require('http');
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -34,9 +36,27 @@ app.get('/facts', function(req, res) {
 });
 
 app.get('/news', function(req, res) {
-  var feedparser = new FeedParser('http://feeds.bbci.co.uk/news/rss.xml');
-  console.log(feedparser)
-  res.json(feedparser)
+  http.get('http://feeds.bbci.co.uk/news/rss.xml', (res) => {
+    if (res.statusCode != 200) {
+      console.error(new Error(`status code ${res.statusCode}`));
+      return;
+    }
+    var parser = new FeedMe(true);
+    res.pipe(parser);
+    parser.on('title', (title) => {
+      console.log('title of feed is', title);
+    });
+    parser.on('item', (item) => {
+      console.log();
+      console.log('news:', item.title);
+      console.log(item.description);
+
+    });
+    parser.on('end', () => {
+      console.log(parser.done());
+    });
+  });
+
 });
 
 // view engine setup
