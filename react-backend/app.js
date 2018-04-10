@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var facts = require('./routes/facts');
+var FeedParser = require('feedparser');
+var request = require('request'); // for fetching the feed
 
 var app = express();
 
@@ -31,8 +33,10 @@ app.get('/facts', function(req, res) {
     }]);
 });
 
-app.get('/jokes', function(req, res) {
-  res.json("jokes")
+app.get('/news', function(req, res) {
+  var feedparser = new FeedParser('http://feeds.bbci.co.uk/news/rss.xml');
+  console.log(feedparser)
+  res.json(feedparser)
 });
 
 // view engine setup
