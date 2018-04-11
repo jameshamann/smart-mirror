@@ -49,13 +49,7 @@ app.get('/news', function(req, res) {
     var arr = [];
     feed("http://feeds.bbci.co.uk/news/rss.xml", function(err, articles) {
         if (err) throw err;
-        articles.forEach(function (article){
-          let headline = article.title
-          arr.push(headline)
-          newsArr(headline)
-        });
-        return arr;
-
+        newsArr(articles)
         // Each article has the following properties:
         //
         //   * "title"     - The article title (String).
@@ -67,10 +61,9 @@ app.get('/news', function(req, res) {
         //
       });
     }
+
     myFunc(newsArr)
 
-    // var data = [{name: "Headline one"}, {name: 'Headline one'}]
-    // res.json(data)
   });
 
 // view engine setup
