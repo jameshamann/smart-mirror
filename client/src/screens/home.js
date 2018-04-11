@@ -37,7 +37,7 @@ class Home extends Component {
     fetch('/news')
     .then(function(res){
       console.log(res)
-      return res
+      return res.json()
     }).then(function(json){
       console.log("HELLO")
       console.log(json)

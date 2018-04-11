@@ -40,25 +40,37 @@ app.get('/facts', function(req, res) {
 
 
 app.get('/news', function(req, res) {
-      feed("http://feeds.bbci.co.uk/news/rss.xml", function(err, articles) {
-      if (err) throw err;
-      articles.forEach(function (article){
-        let headline = article.title
-        console.log(headline)
-      });
+  var newsArr = function(data){
+    console.log("Headline: " + data)
+    res.json(data);
+  }
 
-      // Each article has the following properties:
-      //
-      //   * "title"     - The article title (String).
-      //   * "author"    - The author's name (String).
-      //   * "link"      - The original article link (String).
-      //   * "content"   - The HTML content of the article (String).
-      //   * "published" - The date that the article was published (Date).
-      //   * "feed"      - {name, source, link}
-      //
-    })
-    var data = [{name: "Headline one"}, {name: 'Headline one'}]
-    res.json(data)
+  var myFunc = function(newsArr) {
+    var arr = [];
+    feed("http://feeds.bbci.co.uk/news/rss.xml", function(err, articles) {
+        if (err) throw err;
+        articles.forEach(function (article){
+          let headline = article.title
+          arr.push(headline)
+          newsArr(headline)
+        });
+        return arr;
+
+        // Each article has the following properties:
+        //
+        //   * "title"     - The article title (String).
+        //   * "author"    - The author's name (String).
+        //   * "link"      - The original article link (String).
+        //   * "content"   - The HTML content of the article (String).
+        //   * "published" - The date that the article was published (Date).
+        //   * "feed"      - {name, source, link}
+        //
+      });
+    }
+    myFunc(newsArr)
+
+    // var data = [{name: "Headline one"}, {name: 'Headline one'}]
+    // res.json(data)
   });
 
 // view engine setup
