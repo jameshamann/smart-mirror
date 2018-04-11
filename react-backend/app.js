@@ -9,7 +9,7 @@ var facts = require('./routes/facts');
 var FeedParser = require('feedparser');
 var request = require('request'); // for fetching the feed
 var proxy = require('http-proxy-middleware');
-
+var feed = require("feed-read");
 var app = express();
 
 const FeedMe = require('feedme');
@@ -36,37 +36,29 @@ app.get('/facts', function(req, res) {
     }]);
 });
 
-var callback = function(res){
-  console.log("HELLO")
-  return res;
-}
 
-var getNews = function() {
-  http.get('http://feeds.bbci.co.uk/news/rss.xml', callback, function(res) {
-    if (res.statusCode != 200) {
-      console.error(new Error(`status code ${res.statusCode}`));
-      return;
-    }
-    var parser = new FeedMe(true);
-    res.pipe(parser);
-    parser.on('title', (title) => {
-      console.log('title of feed is', title);
-    });
-    parser.on('item', (item) => {
-      console.log();
-      console.log('news:', item.title);
-      console.log(item.description);
 
-    });
-    parser.on('end', () => {
-      console.log(parser.done());
-      return parser.done();
-    });
-  })
-}
 
 app.get('/news', function(req, res) {
-    console.log(getNews())
+      feed("http://feeds.bbci.co.uk/news/rss.xml", function(err, articles) {
+      if (err) throw err;
+      articles.forEach(function (article){
+        let headline = article.title
+        console.log(headline)
+      });
+
+      // Each article has the following properties:
+      //
+      //   * "title"     - The article title (String).
+      //   * "author"    - The author's name (String).
+      //   * "link"      - The original article link (String).
+      //   * "content"   - The HTML content of the article (String).
+      //   * "published" - The date that the article was published (Date).
+      //   * "feed"      - {name, source, link}
+      //
+    })
+    var data = [{name: "Headline one"}, {name: 'Headline one'}]
+    res.json(data)
   });
 
 // view engine setup
