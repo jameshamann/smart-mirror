@@ -18,3 +18,8 @@ parser.on('end', () => {
   console.log(parser.done());
   return parser.done();
 });
+
+<Header style={{color: 'white', fontFamily: 'Roboto'}}>
+{this.userGreeting(this.state.date.getHours())}, {this.state.currentUser}
+  <p style={{fontFamily: 'Roboto'}}>Have a Great Day!</p>
+</Header>
