@@ -44,26 +44,14 @@ app.get('/news', function(req, res) {
     console.log("Headline: " + data)
     res.json(data);
   }
-
   var myFunc = function(newsArr) {
     var arr = [];
     feed("http://feeds.bbci.co.uk/news/rss.xml", function(err, articles) {
         if (err) throw err;
         newsArr(articles)
-        // Each article has the following properties:
-        //
-        //   * "title"     - The article title (String).
-        //   * "author"    - The author's name (String).
-        //   * "link"      - The original article link (String).
-        //   * "content"   - The HTML content of the article (String).
-        //   * "published" - The date that the article was published (Date).
-        //   * "feed"      - {name, source, link}
-        //
       });
     }
-
     myFunc(newsArr)
-
   });
 
 // view engine setup

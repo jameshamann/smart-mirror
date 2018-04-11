@@ -28,19 +28,22 @@ class Home extends Component {
       location: 'Horsham',
       date: new Date(),
       currentUser: 'James',
-      fact: "Insert Fact Here"
+      fact: "Insert Fact Here",
+      headline: 'Hey!'
     };
   }
 
   getNews(){
-    console.log("NEWS")
+    var self = this;
     fetch('/news')
     .then(function(res){
       console.log(res)
       return res.json()
     }).then(function(json){
       console.log("HELLO")
-      console.log(json)
+      self.setState({
+        headline: json[0].title
+      })
     })
   }
 
@@ -49,10 +52,13 @@ class Home extends Component {
     var self = this;
     var dat = this.state.weatherData
     this.setState({
+        headline: this.getNews(),
         time: new Date().toLocaleString(),
         date: new Date(),
         fact: "Insert Fact Here"
       })
+      console.log("GET NEWS" + this.state.headline)
+
     fetch('http://api.openweathermap.org/data/2.5/weather?q=' + this.state.location + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
     .then(function(weather) {
       return weather.json()
@@ -133,7 +139,6 @@ formatDate(value, format){
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
     console.log(this.formatDate(this.state.date, 'dd'))
-
     return (
 
       <Grid columns='equal' style={{padding: '20px'}}>
@@ -186,6 +191,9 @@ formatDate(value, format){
         </Grid.Column>
         </Grid.Row>
         <Grid.Row>
+        <Grid.Column>
+        <Header style={{color: 'white', fontFamily: 'Roboto'}}>{this.state.headline}</Header>
+        </Grid.Column>
         </Grid.Row>
         <Grid.Row>
         <Grid.Column>
