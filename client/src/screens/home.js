@@ -28,19 +28,36 @@ class Home extends Component {
       location: 'Horsham',
       date: new Date(),
       currentUser: 'James',
-      fact: "Insert Fact Here"
+      fact: "Insert Fact Here",
+      headlines: []
     };
   }
 
+  getNews(){
+    var self = this;
+    fetch('/news')
+    .then(function(res){
+      console.log(res)
+      return res.json()
+    }).then(function(json){
+      console.log("HELLO")
+      self.setState({
+        headlines: [json[0].title, json[1].title, json[2].title, json[3].title, json[4].title]
+      })
+    })
+  }
+
   componentDidMount() {
-    console.log()
+    this.getNews()
     var self = this;
     var dat = this.state.weatherData
     this.setState({
+        headline: this.getNews(),
         time: new Date().toLocaleString(),
         date: new Date(),
         fact: "Insert Fact Here"
       })
+
     fetch('http://api.openweathermap.org/data/2.5/weather?q=' + this.state.location + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
     .then(function(weather) {
       return weather.json()
@@ -108,8 +125,14 @@ formatDate(value, format){
   return moment(value).format(format)
 }
 
+loopNews(currHeadlines){
+  var i = 0;
+  return currHeadlines[i++]
+  if (i == currHeadlines.length) i = 0;
+}
 
   render() {
+    console.log(this.state.headlines)
     console.log(moment())
     const now = Date.now()
     const dat = moment().format('dddd, MMMM Do YYYY')
@@ -120,7 +143,15 @@ formatDate(value, format){
     const {fact, date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise} = this.state;
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
+    const currHeadlines = this.state.headlines
     console.log(this.formatDate(this.state.date, 'dd'))
+    var i = 0;  // the index of the current item to show
+      setInterval(function() {            // setInterval makes it run repeatedly
+          document
+              .getElementById('news')
+              .innerHTML = currHeadlines[i++];    // get the item and increment
+          if (i == currHeadlines.length) i = 0;   // reset to first element if you've reached the end
+      }, 10000);
 
     return (
 
@@ -174,13 +205,15 @@ formatDate(value, format){
         </Grid.Column>
         </Grid.Row>
         <Grid.Row>
+        <Grid.Column>
+        <Header style={{color: 'white', fontFamily: 'Roboto'}}>
+        <span id="news"></span>
+        </Header>
+        </Grid.Column>
         </Grid.Row>
         <Grid.Row>
         <Grid.Column>
-        <Header style={{color: 'white', fontFamily: 'Roboto'}}>
-        {this.userGreeting(this.state.date.getHours())}, {this.state.currentUser}
-          <p style={{fontFamily: 'Roboto'}}>Have a Great Day!</p>
-        </Header>
+
 
         </Grid.Column>
 
