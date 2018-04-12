@@ -137,7 +137,15 @@ formatDate(value, format){
     const {fact, date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise} = this.state;
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
+    const currHeadlines = this.state.headlines
     console.log(this.formatDate(this.state.date, 'dd'))
+    var i = 0;  // the index of the current item to show
+      setInterval(function() {            // setInterval makes it run repeatedly
+          document
+              .getElementById('news')
+              .innerHTML = currHeadlines[i++];    // get the item and increment
+          if (i == currHeadlines.length) i = 0;   // reset to first element if you've reached the end
+      }, 10000);
     return (
 
       <Grid columns='equal' style={{padding: '20px'}}>
@@ -192,11 +200,7 @@ formatDate(value, format){
         <Grid.Row>
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto'}}>
-        {this.state.headlines.forEach(function(title,index){
-          setInterval(() => {
-                console.log(title)
-            }, 1000);;
-          })}
+        <span id="news"></span>
         </Header>
         </Grid.Column>
         </Grid.Row>
