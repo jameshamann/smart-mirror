@@ -125,6 +125,12 @@ formatDate(value, format){
   return moment(value).format(format)
 }
 
+loopNews(currHeadlines){
+  var i = 0;
+  return currHeadlines[i++]
+  if (i == currHeadlines.length) i = 0;
+}
+
   render() {
     console.log(this.state.headlines)
     console.log(moment())
@@ -146,6 +152,7 @@ formatDate(value, format){
               .innerHTML = currHeadlines[i++];    // get the item and increment
           if (i == currHeadlines.length) i = 0;   // reset to first element if you've reached the end
       }, 10000);
+
     return (
 
       <Grid columns='equal' style={{padding: '20px'}}>
