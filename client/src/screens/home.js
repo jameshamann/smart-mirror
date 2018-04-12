@@ -29,7 +29,7 @@ class Home extends Component {
       date: new Date(),
       currentUser: 'James',
       fact: "Insert Fact Here",
-      headline: 'Hey!'
+      headlines: []
     };
   }
 
@@ -42,7 +42,7 @@ class Home extends Component {
     }).then(function(json){
       console.log("HELLO")
       self.setState({
-        headline: json[0].title
+        headlines: [json[0].title, json[1].title, json[2].title, json[3].title, json[4].title]
       })
     })
   }
@@ -57,7 +57,6 @@ class Home extends Component {
         date: new Date(),
         fact: "Insert Fact Here"
       })
-      console.log("GET NEWS" + this.state.headline)
 
     fetch('http://api.openweathermap.org/data/2.5/weather?q=' + this.state.location + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
     .then(function(weather) {
@@ -126,8 +125,8 @@ formatDate(value, format){
   return moment(value).format(format)
 }
 
-
   render() {
+    console.log(this.state.headlines)
     console.log(moment())
     const now = Date.now()
     const dat = moment().format('dddd, MMMM Do YYYY')
@@ -192,13 +191,18 @@ formatDate(value, format){
         </Grid.Row>
         <Grid.Row>
         <Grid.Column>
-        <Header style={{color: 'white', fontFamily: 'Roboto'}}>{this.state.headline}</Header>
+        <Header style={{color: 'white', fontFamily: 'Roboto'}}>
+        {this.state.headlines.forEach(function(title,index){
+          setInterval(() => {
+                console.log(title)
+            }, 1000);;
+          })}
+        </Header>
         </Grid.Column>
         </Grid.Row>
         <Grid.Row>
         <Grid.Column>
 
-          // User Greeting Module
 
         </Grid.Column>
 
