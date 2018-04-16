@@ -73,7 +73,7 @@ class Home extends Component {
         })
     })
       setInterval(() => {
-
+        this.getNews()
           console.log("Hello")
           console.log(this.state.weatherTemp)
         }, 100000);
