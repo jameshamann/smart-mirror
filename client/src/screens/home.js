@@ -220,7 +220,7 @@ state = { visible: true }
         <Grid.Row>
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto'}}>
-        <Transition visible={visible} animation='scale' duration={500}>
+        <Transition visible={visible} animation='scale' duration={600}>
           <span id="news"></span>
       </Transition>
         </Header>
