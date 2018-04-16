@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import AnalogClock, { Themes } from 'react-analog-clock';
-import { Card, Icon, Image, Grid, Header, Transition, Divider } from 'semantic-ui-react'
+import { Card, Icon, Image, Grid, Header, Transition, Divider, Button } from 'semantic-ui-react'
 import moment from 'moment';
 import _ from 'lodash'
 import Calendar from 'react-calendar';
 import tz from 'moment-timezone'
 import Clock from './clock'
-import Button from 'material-ui/Button';
 
 
 
@@ -168,19 +167,21 @@ state = { visible: true }
       <Grid.Row>
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto'}}>
-        <Button content={visible ? 'Hide' : 'Show'} onClick={this.toggleVisibility} />
-        <Divider hidden />
+
 
           {dat}
         </Header>
 
         </Grid.Column>
+
         <Grid.Column>
 
 
         </Grid.Column>
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto'}}>
+        <Button color='red' content={visible ? 'Hide' : 'Show'} onClick={this.toggleVisibility} />
+        <Divider hidden />
         {this.state.weatherCity} {this.state.weatherTemp}°C <br />
         <Image src={"http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"} /> <br />
         {this.toTitleCase(this.state.weatherDesc)}
