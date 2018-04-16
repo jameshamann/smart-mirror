@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AnalogClock, { Themes } from 'react-analog-clock';
-import { Card, Icon, Image, Grid, Header } from 'semantic-ui-react'
+import { Card, Icon, Image, Grid, Header, Transition, Divider } from 'semantic-ui-react'
 import moment from 'moment';
 import _ from 'lodash'
 import Calendar from 'react-calendar';
@@ -14,6 +14,7 @@ let time = new Date().toLocaleString();
 
 
 class Home extends Component {
+
 
   constructor(props) {
     super(props);
@@ -130,8 +131,12 @@ loopNews(currHeadlines){
   return currHeadlines[i++]
   if (i == currHeadlines.length) i = 0;
 }
+state = { visible: true }
+
+ toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
+    const { visible } = this.state
     console.log(this.state.headlines)
     console.log(moment())
     const now = Date.now()
@@ -163,6 +168,9 @@ loopNews(currHeadlines){
       <Grid.Row>
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto'}}>
+        <Button content={visible ? 'Hide' : 'Show'} onClick={this.toggleVisibility} />
+        <Divider hidden />
+
           {dat}
         </Header>
 
@@ -179,10 +187,14 @@ loopNews(currHeadlines){
 
         </Header>
         <br />
+          <p style={{fontFamily: 'Roboto', color: "white"}}>
           <Icon name="sun" /> {sunrise}
           <br />
+          </p>
+          <p style={{fontFamily: 'Roboto', color: "white"}}>
           <Icon name="moon" />
           {sunset}
+          </p>
         </Grid.Column>
         </Grid.Row>
         <Grid.Row>
@@ -207,7 +219,9 @@ loopNews(currHeadlines){
         <Grid.Row>
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto'}}>
-        <span id="news"></span>
+        <Transition visible={visible} animation='scale' duration={500}>
+          <span id="news"></span>
+      </Transition>
         </Header>
         </Grid.Column>
         </Grid.Row>
