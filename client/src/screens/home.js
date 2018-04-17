@@ -29,7 +29,10 @@ class Home extends Component {
       date: new Date(),
       currentUser: 'James',
       fact: "Insert Fact Here",
-      headlines: []
+      headlines: [],
+      headline0 : '',
+      headline1: '',
+      headline2: ''
     };
   }
 
@@ -42,7 +45,11 @@ class Home extends Component {
     }).then(function(json){
       console.log("HELLO")
       self.setState({
-        headlines: [json[0].title, json[1].title, json[2].title, json[3].title, json[4].title]
+        headline0: json[0].title,
+        headline1: json[1].title,
+        headline2: json[2].title,
+        headline3: json[3].title,
+        headline4: json[4].title
       })
     })
   }
@@ -138,6 +145,7 @@ state = { visible: true }
  toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
+    var currHeadlines = '';
     const { visible } = this.state
     console.log(this.state.headlines)
     console.log(moment())
@@ -151,16 +159,15 @@ state = { visible: true }
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
     console.log(this.formatDate(this.state.date, 'dd'))
-    const currHeadlines = this.state.headlines;
-    var i ='';
+    var currHeadlines = [this.state.headline0, this.state.headline1, this.state.headline2, this.state.headline3, this.state.headline4, this.state.headline5];
+    var i = 0;
       setInterval(function() {
               console.log(i)
-
+              if (i == currHeadlines.length) i = 0;
               document
                   .getElementById('news')
                   .innerHTML = currHeadlines[i++]
-                  if (i > currHeadlines.length) i = 0;
-      }, 1000);
+      }, 5000);
 
     return (
 
@@ -185,7 +192,7 @@ state = { visible: true }
         </Grid.Column>
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto'}}>
-        <Button color='red' content={visible ? 'Hide' : 'Show'} onClick={this.toggleVisibility} />
+        <Button id="but" color='red' content={visible ? 'Hide' : 'Show'} onClick={this.toggleVisibility} />
         <Divider hidden />
         {this.state.weatherCity} {this.state.weatherTemp}°C <br />
         <Image src={"http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"} /> <br />
