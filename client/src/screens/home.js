@@ -155,9 +155,10 @@ state = { visible: true }
     var i = 0;
       setInterval(function() {
             for (var i = 0; i < currHeadlines.length; i++) {
+              console.log(i)
               document
                   .getElementById('news')
-                  .innerHTML = currHeadlines[i]
+                  .innerHTML = currHeadlines[i-3]
             }
       }, 1000);
 
