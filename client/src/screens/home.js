@@ -159,10 +159,7 @@ state = { visible: true }
               document
                   .getElementById('news')
                   .innerHTML = currHeadlines[i++]
-                  if (i >= currHeadlines.length) i = 0;
-
-                  
-
+                  if (i > currHeadlines.length) i = 0;
       }, 1000);
 
     return (
