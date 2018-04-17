@@ -151,9 +151,8 @@ state = { visible: true }
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
     console.log(this.formatDate(this.state.date, 'dd'))
-    let currHeadlines = this.state.headlines;
+    const currHeadlines = this.state.headlines;
     var i = 0;
-    setInterval(function() {
       setInterval(function() {
             for (var i = 0; i < currHeadlines.length; i++) {
               document
@@ -161,7 +160,6 @@ state = { visible: true }
                   .innerHTML = currHeadlines[i]
             }
       }, 1000);
-    },1000);
 
     return (
 
