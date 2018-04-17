@@ -152,14 +152,17 @@ state = { visible: true }
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
     console.log(this.formatDate(this.state.date, 'dd'))
     const currHeadlines = this.state.headlines;
-    var i = 0;
+    var i ='';
       setInterval(function() {
-            for (var i = 0; i < currHeadlines.length; i++) {
               console.log(i)
+
               document
                   .getElementById('news')
-                  .innerHTML = currHeadlines[i-3]
-            }
+                  .innerHTML = currHeadlines[i++]
+                  if (i >= currHeadlines.length) i = 0;
+
+                  
+
       }, 1000);
 
     return (
