@@ -25,7 +25,7 @@ class Home extends Component {
       weatherIcon: '',
       weatherSunset: '',
       weatherSunrise: '',
-      location: 'Horsham',
+      location: 'London',
       date: new Date(),
       currentUser: 'James',
       fact: "Insert Fact Here",
@@ -127,7 +127,10 @@ formatDate(value, format){
 
 loopNews(currHeadlines){
   var i = 0;
-  return currHeadlines[i++]
+  document
+      .getElementById('news')
+      .innerHTML = currHeadlines[i++];
+       console.log(currHeadlines[i++])
   if (i == currHeadlines.length) i = 0;
 }
 state = { visible: true }
@@ -144,18 +147,21 @@ state = { visible: true }
     const timeZone = moment.tz.guess();
     const timeZoneAbbr = moment.tz(timeZone).zoneAbbr()
     console.log(timeZone)
-    const {fact, date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise} = this.state;
+    const {fact, date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise, headlines} = this.state;
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
-    const currHeadlines = this.state.headlines
     console.log(this.formatDate(this.state.date, 'dd'))
-    var i = 0;  // the index of the current item to show
-      setInterval(function() {            // setInterval makes it run repeatedly
-          document
-              .getElementById('news')
-              .innerHTML = currHeadlines[i++];    // get the item and increment
-          if (i == currHeadlines.length) i = 0;   // reset to first element if you've reached the end
-      }, 10000);
+    let currHeadlines = this.state.headlines;
+    var i = 0;
+    setInterval(function() {
+      setInterval(function() {
+            for (var i = 0; i < currHeadlines.length; i++) {
+              document
+                  .getElementById('news')
+                  .innerHTML = currHeadlines[i]
+            }
+      }, 1000);
+    },1000);
 
     return (
 
@@ -193,8 +199,7 @@ state = { visible: true }
           <br />
           </p>
           <p style={{fontFamily: 'Roboto', color: "white"}}>
-          <Icon name="moon" />
-          {sunset}
+          <Icon name="moon" /> {sunset}
           </p>
         </Grid.Column>
         </Grid.Row>
@@ -221,7 +226,7 @@ state = { visible: true }
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto'}}>
         <Transition visible={visible} animation='scale' duration={600}>
-          <span id="news"></span>
+          <div id="news"></div>
       </Transition>
         </Header>
         </Grid.Column>
