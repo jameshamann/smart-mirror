@@ -193,7 +193,6 @@ state = { visible: true }
         </Grid.Column>
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto'}}>
-        <Divider hidden />
         {this.state.weatherCity} {this.state.weatherTemp}°C <br />
         <Image src={"http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"} /> <br />
         {this.toTitleCase(this.state.weatherDesc)}
