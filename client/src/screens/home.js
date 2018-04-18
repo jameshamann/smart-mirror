@@ -33,7 +33,13 @@ class Home extends Component {
       headline1: '',
       headline2: '',
       headline3: '',
-      headline4: ''
+      headline4: '',
+      showWeather: '',
+      showDate: '',
+      showNews: '',
+      showSunset: '',
+      showSunrise: '',
+      showTime: ''
     };
   }
 
@@ -84,7 +90,7 @@ class Home extends Component {
         this.getNews()
           console.log("Hello")
           console.log(this.state.weatherTemp)
-        }, 100000);
+        }, 10000);
 
     setInterval(() => {
       fetch('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
@@ -105,7 +111,7 @@ class Home extends Component {
           time: new Date().toLocaleString(),
           date: new Date()
         })
-    }, 30000);
+    }, 100000);
   }
 
 
@@ -133,14 +139,6 @@ formatDate(value, format){
   return moment(value).format(format)
 }
 
-loopNews(currHeadlines){
-  var i = 0;
-  document
-      .getElementById('news')
-      .innerHTML = currHeadlines[i++];
-       console.log(currHeadlines[i++])
-  if (i == currHeadlines.length) i = 0;
-}
 state = { visible: true }
 
  toggleVisibility = () => this.setState({ visible: !this.state.visible })
@@ -161,14 +159,14 @@ state = { visible: true }
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
     console.log(this.formatDate(this.state.date, 'dd'))
     var currHeadlines = [this.state.headline0, this.state.headline1, this.state.headline2, this.state.headline3, this.state.headline4];
-    var i = 0;
-    var self = this;
+
       setInterval(function() {
+        var i = 0;
               console.log(i)
               if (i == currHeadlines.length) i = 0;
               document
-                  .getElementById('news')
-                  .innerHTML = currHeadlines[i++]
+                .getElementById('news')
+                .innerHTML = currHeadlines[i++]
       }, 10000);
 
     return (
@@ -180,7 +178,7 @@ state = { visible: true }
       </Grid.Row>
       <Grid.Row>
         <Grid.Column>
-        <Header style={{color: 'white', fontFamily: 'Roboto'}}>
+        <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showDate}}>
 
 
           {dat}
@@ -193,18 +191,18 @@ state = { visible: true }
 
         </Grid.Column>
         <Grid.Column>
-        <Header style={{color: 'white', fontFamily: 'Roboto'}}>
+        <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showWeather}}>
         {this.state.weatherCity} {this.state.weatherTemp}°C <br />
         <Image src={"http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"} /> <br />
         {this.toTitleCase(this.state.weatherDesc)}
 
         </Header>
         <br />
-          <p style={{fontFamily: 'Roboto', color: "white"}}>
+          <p style={{fontFamily: 'Roboto', color: "white", visibility: this.state.showSunrise}}>
           <Icon name="sun" /> {sunrise}
           <br />
           </p>
-          <p style={{fontFamily: 'Roboto', color: "white"}}>
+          <p style={{fontFamily: 'Roboto', color: "white", visibility: this.state.showSunset}}>
           <Icon name="moon" /> {sunset}
           </p>
         </Grid.Column>
@@ -223,17 +221,15 @@ state = { visible: true }
         </Grid.Row>
         <Grid.Row>
         <Grid.Column>
-          <Header style={{color: 'white'}}>
+          <Header style={{color: 'white', visibility: this.state.showTime}}>
             <p style={{fontFamily: 'Roboto'}}> {tim} {timeZoneAbbr}</p>
           </Header>
         </Grid.Column>
         </Grid.Row>
         <Grid.Row>
         <Grid.Column>
-        <Header style={{color: 'white', fontFamily: 'Roboto'}}>
-        <Transition visible={visible} animation='scale' duration={600}>
+        <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showNews}}>
           <div id="news"></div>
-      </Transition>
         </Header>
         </Grid.Column>
         </Grid.Row>
