@@ -162,13 +162,14 @@ state = { visible: true }
     console.log(this.formatDate(this.state.date, 'dd'))
     var currHeadlines = [this.state.headline0, this.state.headline1, this.state.headline2, this.state.headline3, this.state.headline4];
     var i = 0;
+    var self = this;
       setInterval(function() {
               console.log(i)
               if (i == currHeadlines.length) i = 0;
               document
                   .getElementById('news')
                   .innerHTML = currHeadlines[i++]
-      }, 5000);
+      }, 10000);
 
     return (
 
