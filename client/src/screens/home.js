@@ -29,10 +29,11 @@ class Home extends Component {
       date: new Date(),
       currentUser: 'James',
       fact: "Insert Fact Here",
-      headlines: [],
       headline0 : '',
       headline1: '',
-      headline2: ''
+      headline2: '',
+      headline3: '',
+      headline4: ''
     };
   }
 
@@ -159,7 +160,7 @@ state = { visible: true }
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
     console.log(this.formatDate(this.state.date, 'dd'))
-    var currHeadlines = [this.state.headline0, this.state.headline1, this.state.headline2, this.state.headline3, this.state.headline4, this.state.headline5];
+    var currHeadlines = [this.state.headline0, this.state.headline1, this.state.headline2, this.state.headline3, this.state.headline4];
     var i = 0;
       setInterval(function() {
               console.log(i)
@@ -192,7 +193,6 @@ state = { visible: true }
         </Grid.Column>
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto'}}>
-        <Button id="but" color='red' content={visible ? 'Hide' : 'Show'} onClick={this.toggleVisibility} />
         <Divider hidden />
         {this.state.weatherCity} {this.state.weatherTemp}°C <br />
         <Image src={"http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"} /> <br />
