@@ -1,5 +1,91 @@
 --- !com.amazonaws.mobilehub.v0.Project 
 features:
+  cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
+    components:
+      smartmirror: !com.amazonaws.mobilehub.v0.API 
+        attributes:
+          name: smartmirror
+          requires-signin: false
+          sdk-generation-stage-name: Development
+        paths:
+          /mirror: !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/smartmirror-20180425205448.zip
+            description: 'Handler for calls to resource path : /weather/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: 0yAfxU4SBBXD51B3+nycz+MFAWqfROskKMxx3Rnh5f8=
+            memorySize: '128'
+            modified: '2018-04-25T21:12:59.128+0000'
+            name: smartmirror
+            runtime: nodejs6.10
+            timeout: '3'
+            version: XSBsN8HoaQbvmcGiirB5xpuRX2NL9d2y
+          '/mirror/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/smartmirror-20180425205448.zip
+            description: 'Handler for calls to resource path : /weather/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: 0yAfxU4SBBXD51B3+nycz+MFAWqfROskKMxx3Rnh5f8=
+            memorySize: '128'
+            modified: '2018-04-25T21:12:59.128+0000'
+            name: smartmirror
+            runtime: nodejs6.10
+            timeout: '3'
+            version: wXTKWjS5VOwDvJAnqFlobum88zFzJNYa
+          /news: !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/smartmirror-20180425205448.zip
+            description: 'Handler for calls to resource path : /weather/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: 0yAfxU4SBBXD51B3+nycz+MFAWqfROskKMxx3Rnh5f8=
+            memorySize: '128'
+            modified: '2018-04-25T21:12:59.128+0000'
+            name: smartmirror
+            runtime: nodejs6.10
+            timeout: '3'
+            version: sJpkZlZaJmdf3tkfgk2g7yYH2r4m0OV8
+          '/news/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/smartmirror-20180425205448.zip
+            description: 'Handler for calls to resource path : /weather/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: 0yAfxU4SBBXD51B3+nycz+MFAWqfROskKMxx3Rnh5f8=
+            memorySize: '128'
+            modified: '2018-04-25T21:12:59.128+0000'
+            name: smartmirror
+            runtime: nodejs6.10
+            timeout: '3'
+            version: agBwjUFRZj1GXZMfj.eKuyGisdDKQxzT
+          /weather: !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/smartmirror-20180425205448.zip
+            description: 'Handler for calls to resource path : /weather/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: 0yAfxU4SBBXD51B3+nycz+MFAWqfROskKMxx3Rnh5f8=
+            memorySize: '128'
+            modified: '2018-04-25T21:12:59.128+0000'
+            name: smartmirror
+            runtime: nodejs6.10
+            timeout: '3'
+            version: WPzpS1hno2R9FVGnHvUINFvygDN1MbJi
+          '/weather/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/smartmirror-20180425205448.zip
+            description: 'Handler for calls to resource path : /weather/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: 0yAfxU4SBBXD51B3+nycz+MFAWqfROskKMxx3Rnh5f8=
+            memorySize: '128'
+            modified: '2018-04-25T21:12:59.128+0000'
+            name: smartmirror
+            runtime: nodejs6.10
+            timeout: '3'
+            version: VIUoSje4UglVDw9THOXUoNDzvL4UebPZ
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true
@@ -10,54 +96,5 @@ features:
     components:
       analytics: !com.amazonaws.mobilehub.v0.PinpointAnalytics {}
   sign-in: !com.amazonaws.mobilehub.v0.SignIn {}
-  cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
-    components:
-      smartmirror: !com.amazonaws.mobilehub.v0.API 
-        attributes:
-          name: smartmirror
-          requires-signin: false
-        paths:
-          /mirror: !com.amazonaws.mobilehub.v0.Function 
-            name: smartmirror
-            codeFilename: uploads/smartmirror-20180425205448.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
-            environment: {}
-          '/mirror/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            name: smartmirror
-            codeFilename: uploads/smartmirror-20180425205448.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
-            environment: {}
-          /news: !com.amazonaws.mobilehub.v0.Function 
-            name: smartmirror
-            codeFilename: uploads/smartmirror-20180425205448.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
-            environment: {}
-          '/news/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            name: smartmirror
-            codeFilename: uploads/smartmirror-20180425205448.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
-            environment: {}
-          /weather: !com.amazonaws.mobilehub.v0.Function 
-            name: smartmirror
-            codeFilename: uploads/smartmirror-20180425205448.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
-            environment: {}
-          '/weather/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            name: smartmirror
-            codeFilename: uploads/smartmirror-20180425205448.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
-            environment: {}
 name: smart-mirror-react
 region: eu-west-2
