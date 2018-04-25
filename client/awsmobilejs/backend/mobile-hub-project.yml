@@ -10,5 +10,54 @@ features:
     components:
       analytics: !com.amazonaws.mobilehub.v0.PinpointAnalytics {}
   sign-in: !com.amazonaws.mobilehub.v0.SignIn {}
+  cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
+    components:
+      smartmirror: !com.amazonaws.mobilehub.v0.API 
+        attributes:
+          name: smartmirror
+          requires-signin: false
+        paths:
+          /mirror: !com.amazonaws.mobilehub.v0.Function 
+            name: smartmirror
+            codeFilename: uploads/smartmirror-20180425205448.zip
+            handler: lambda.handler
+            enableCORS: true
+            runtime: nodejs6.10
+            environment: {}
+          '/mirror/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            name: smartmirror
+            codeFilename: uploads/smartmirror-20180425205448.zip
+            handler: lambda.handler
+            enableCORS: true
+            runtime: nodejs6.10
+            environment: {}
+          /news: !com.amazonaws.mobilehub.v0.Function 
+            name: smartmirror
+            codeFilename: uploads/smartmirror-20180425205448.zip
+            handler: lambda.handler
+            enableCORS: true
+            runtime: nodejs6.10
+            environment: {}
+          '/news/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            name: smartmirror
+            codeFilename: uploads/smartmirror-20180425205448.zip
+            handler: lambda.handler
+            enableCORS: true
+            runtime: nodejs6.10
+            environment: {}
+          /weather: !com.amazonaws.mobilehub.v0.Function 
+            name: smartmirror
+            codeFilename: uploads/smartmirror-20180425205448.zip
+            handler: lambda.handler
+            enableCORS: true
+            runtime: nodejs6.10
+            environment: {}
+          '/weather/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            name: smartmirror
+            codeFilename: uploads/smartmirror-20180425205448.zip
+            handler: lambda.handler
+            enableCORS: true
+            runtime: nodejs6.10
+            environment: {}
 name: smart-mirror-react
 region: eu-west-2
