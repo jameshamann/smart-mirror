@@ -71,7 +71,6 @@ class Home extends Component {
         date: new Date(),
         fact: "Insert Fact Here"
       })
-
     fetch('http://api.openweathermap.org/data/2.5/weather?q=' + this.state.location + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
     .then(function(weather) {
       return weather.json()
@@ -86,12 +85,6 @@ class Home extends Component {
           weatherSunset: weather.sys.sunset
         })
     })
-      setInterval(() => {
-        this.getNews()
-          console.log("Hello")
-          console.log(this.state.weatherTemp)
-        }, 10000);
-
     setInterval(() => {
       fetch('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
       .then(function(weather) {
