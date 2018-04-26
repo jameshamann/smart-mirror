@@ -28,9 +28,12 @@
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
     "mqtt": "^2.15.3",
+    "node-wifi": "^2.0.4",
     "path": "^0.12.7",
     "request": "^2.85.0",
     "serve-favicon": "~2.4.5",
-    "socket.io": "^2.0.4"
+    "socket.io": "^2.0.4",
+    "wifi-control": "^2.0.1",
+    "wifi-password": "^3.0.1"
   }
 }
