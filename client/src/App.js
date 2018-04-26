@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Home from './screens/home.js'
+import Home from './screens/lambda_home.js'
 
 
 

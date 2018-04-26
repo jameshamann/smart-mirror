@@ -29,13 +29,22 @@ AWS.config.update({ region: process.env.REGION })
  **********************/
 
 app.get('/mirror', function(req, res) {
-  // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
-});
+  var newsArr = function(data){
+    console.log("Headline: " + data)
+    res.json({success: 'get call succeed!', url: req.url, data});
+  }
+  var myFunc = function(newsArr) {
+    var arr = [];
+    feed("http://feeds.bbci.co.uk/news/rss.xml", function(err, articles) {
+        if (err) throw err;
+        newsArr(articles)
+      });
+    }
+    myFunc(newsArr)
+  });
 
 app.get('/mirror/*', function(req, res) {
   // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
 });
 
 /****************************

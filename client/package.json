@@ -2,7 +2,6 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
   "dependencies": {
     "aws-amplify": "^0.3.3",
     "aws-amplify-react": "^0.1.43",
