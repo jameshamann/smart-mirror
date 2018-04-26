@@ -137,29 +137,29 @@ state = { visible: true }
  toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
-    var currHeadlines = '';
     const { visible } = this.state
-    console.log(this.state.headlines)
-    console.log(moment())
     const now = Date.now()
     const dat = moment().format('dddd, MMMM Do YYYY')
     const tim = moment().format('h:mm a')
     const timeZone = moment.tz.guess();
     const timeZoneAbbr = moment.tz(timeZone).zoneAbbr()
-    console.log(timeZone)
     const {fact, date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise, headlines} = this.state;
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
     console.log(this.formatDate(this.state.date, 'dd'))
-    var currHeadlines = [this.state.headline0, this.state.headline1, this.state.headline2, this.state.headline3, this.state.headline4];
-
+    const currHeadlines = [this.state.headline0, this.state.headline1, this.state.headline2, this.state.headline3, this.state.headline4];
+    console.log(currHeadlines)
       setInterval(function() {
-        var i = 0;
-              console.log(i)
-              if (i == currHeadlines.length) i = 0;
+              let arr = currHeadlines;
+              let last = arr.shift();
+              arr.push(last)
+              if (arr.length == 0) {
+                console.log(currHeadlines)
+            }
               document
                 .getElementById('news')
-                .innerHTML = currHeadlines[i++]
+                .innerHTML = last
+                console.log(last)
       }, 10000);
 
     return (
