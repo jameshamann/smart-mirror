@@ -213,6 +213,30 @@ state = { visible: true }
         <Grid.Row>
         </Grid.Row>
         <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
         <Grid.Column>
           <Header style={{color: 'white', visibility: this.state.showTime}}>
             <p style={{fontFamily: 'Roboto'}}> {tim} {timeZoneAbbr}</p>
