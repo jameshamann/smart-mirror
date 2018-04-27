@@ -6,7 +6,9 @@ import _ from 'lodash'
 import Calendar from 'react-calendar';
 import tz from 'moment-timezone'
 import Clock from './clock'
-
+import { PubSub } from 'aws-amplify';
+import { AWSIoTProvider } from 'aws-amplify/lib/PubSub/Providers';
+import Amplify from 'aws-amplify';
 
 
 let time = new Date().toLocaleString();
@@ -43,7 +45,7 @@ class Home extends Component {
     };
   }
 
-  getNews(){
+ getNews(){
     var self = this;
     fetch('/news')
     .then(function(res){
@@ -59,9 +61,18 @@ class Home extends Component {
         headline4: json[4].title
       })
     })
+    PubSub.subscribe('topic_1').subscribe({
+      next: data => console.log('Message received', data),
+      error: error => console.error(error),
+      close: () => console.log('Done'),
+    });
   }
 
   componentDidMount() {
+    Amplify.addPluggable(new AWSIoTProvider({
+      aws_pubsub_region: 'eu-west-2',
+      aws_pubsub_endpoint: 'wss://azjo7hto1k82k.iot.eu-west-2.amazonaws.com/mqtt',
+    }));
     this.getNews()
     var self = this;
     var dat = this.state.weatherData
