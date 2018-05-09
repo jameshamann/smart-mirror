@@ -6,7 +6,9 @@ import _ from 'lodash'
 import Calendar from 'react-calendar';
 import tz from 'moment-timezone'
 import Clock from './clock'
-
+import { PubSub } from 'aws-amplify';
+import { AWSIoTProvider } from 'aws-amplify/lib/PubSub/Providers';
+import Amplify from 'aws-amplify';
 
 
 let time = new Date().toLocaleString();
@@ -43,7 +45,7 @@ class Home extends Component {
     };
   }
 
-  getNews(){
+ getNews(){
     var self = this;
     fetch('/news')
     .then(function(res){
@@ -59,19 +61,25 @@ class Home extends Component {
         headline4: json[4].title
       })
     })
+    PubSub.subscribe('myTopic').subscribe({
+      next: data => console.log('Message received', data),
+      error: error => console.error(error),
+      close: () => console.log('Done'),
+    });
   }
 
   componentDidMount() {
-    this.getNews()
+    Amplify.addPluggable(new AWSIoTProvider({
+      aws_pubsub_region: 'eu-west-2',
+      aws_pubsub_endpoint: 'wss://azjo7hto1k82k.iot.eu-west-2.amazonaws.com/mqtt',
+    }));
     var self = this;
     var dat = this.state.weatherData
     this.setState({
-        headline: this.getNews(),
         time: new Date().toLocaleString(),
         date: new Date(),
         fact: "Insert Fact Here"
       })
-
     fetch('http://api.openweathermap.org/data/2.5/weather?q=' + this.state.location + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
     .then(function(weather) {
       return weather.json()
@@ -86,12 +94,6 @@ class Home extends Component {
           weatherSunset: weather.sys.sunset
         })
     })
-      setInterval(() => {
-        this.getNews()
-          console.log("Hello")
-          console.log(this.state.weatherTemp)
-        }, 10000);
-
     setInterval(() => {
       fetch('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
       .then(function(weather) {
@@ -144,29 +146,29 @@ state = { visible: true }
  toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
-    var currHeadlines = '';
     const { visible } = this.state
-    console.log(this.state.headlines)
-    console.log(moment())
     const now = Date.now()
     const dat = moment().format('dddd, MMMM Do YYYY')
     const tim = moment().format('h:mm a')
     const timeZone = moment.tz.guess();
     const timeZoneAbbr = moment.tz(timeZone).zoneAbbr()
-    console.log(timeZone)
     const {fact, date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise, headlines} = this.state;
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
     console.log(this.formatDate(this.state.date, 'dd'))
-    var currHeadlines = [this.state.headline0, this.state.headline1, this.state.headline2, this.state.headline3, this.state.headline4];
-
+    const currHeadlines = [this.state.headline0, this.state.headline1, this.state.headline2, this.state.headline3, this.state.headline4];
+    console.log(currHeadlines)
       setInterval(function() {
-        var i = 0;
-              console.log(i)
-              if (i == currHeadlines.length) i = 0;
+              let arr = currHeadlines;
+              let last = arr.shift();
+              arr.push(last)
+              if (arr.length == 0) {
+                console.log(currHeadlines)
+            }
               document
                 .getElementById('news')
-                .innerHTML = currHeadlines[i++]
+                .innerHTML = last
+                console.log(last)
       }, 10000);
 
     return (
@@ -206,6 +208,30 @@ state = { visible: true }
           <Icon name="moon" /> {sunset}
           </p>
         </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
         </Grid.Row>
         <Grid.Row>
         </Grid.Row>
