@@ -61,7 +61,7 @@ class Home extends Component {
         headline4: json[4].title
       })
     })
-    PubSub.subscribe('topic_1').subscribe({
+    PubSub.subscribe('myTopic').subscribe({
       next: data => console.log('Message received', data),
       error: error => console.error(error),
       close: () => console.log('Done'),
@@ -73,11 +73,9 @@ class Home extends Component {
       aws_pubsub_region: 'eu-west-2',
       aws_pubsub_endpoint: 'wss://azjo7hto1k82k.iot.eu-west-2.amazonaws.com/mqtt',
     }));
-    this.getNews()
     var self = this;
     var dat = this.state.weatherData
     this.setState({
-        headline: this.getNews(),
         time: new Date().toLocaleString(),
         date: new Date(),
         fact: "Insert Fact Here"
