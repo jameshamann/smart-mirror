@@ -41,7 +41,8 @@ class Home extends Component {
       showNews: '',
       showSunset: '',
       showSunrise: '',
-      showTime: ''
+      showTime: '',
+      currUser: ''
     };
   }
 
@@ -61,11 +62,6 @@ class Home extends Component {
         headline4: json[4].title
       })
     })
-    PubSub.subscribe('myTopic').subscribe({
-      next: data => console.log('Message received', data),
-      error: error => console.error(error),
-      close: () => console.log('Done'),
-    });
   }
 
   componentDidMount() {
@@ -73,6 +69,11 @@ class Home extends Component {
       aws_pubsub_region: 'eu-west-2',
       aws_pubsub_endpoint: 'wss://azjo7hto1k82k.iot.eu-west-2.amazonaws.com/mqtt',
     }));
+    PubSub.subscribe('myTopic').subscribe({
+      next: data => this.setState({currUser: data.value.msg}),
+      error: error => console.error(error),
+      close: () => console.log('Done'),
+    });
     var self = this;
     var dat = this.state.weatherData
     this.setState({
@@ -146,7 +147,7 @@ state = { visible: true }
  toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
-    const { visible } = this.state
+    const { visible, currUser } = this.state
     const now = Date.now()
     const dat = moment().format('dddd, MMMM Do YYYY')
     const tim = moment().format('h:mm a')
@@ -256,6 +257,7 @@ state = { visible: true }
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showNews}}>
           <div id="news"></div>
+          {this.state.currUser}
         </Header>
         </Grid.Column>
         </Grid.Row>
