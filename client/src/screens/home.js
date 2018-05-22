@@ -13,8 +13,8 @@ import Amplify from 'aws-amplify';
 
 let time = new Date().toLocaleString();
 
-
 class Home extends Component {
+
 
 
   constructor(props) {
@@ -66,7 +66,13 @@ class Home extends Component {
     })
   }
 
+success(pos){
+  console.log(pos)
+
+}
+
   componentDidMount() {
+    navigator.geolocation.getCurrentPosition(this.success)
     Amplify.addPluggable(new AWSIoTProvider({
       aws_pubsub_region: 'eu-west-2',
       aws_pubsub_endpoint: 'wss://azjo7hto1k82k.iot.eu-west-2.amazonaws.com/mqtt',
