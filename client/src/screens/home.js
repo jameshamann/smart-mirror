@@ -9,7 +9,6 @@ import Clock from './clock'
 import { PubSub } from 'aws-amplify';
 import { AWSIoTProvider } from 'aws-amplify/lib/PubSub/Providers';
 import Amplify from 'aws-amplify';
-import Geolocation from 'react-geolocation'
 
 
 let time = new Date().toLocaleString();
@@ -261,25 +260,7 @@ state = { visible: true }
         <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showNews}}>
           <div id="news"></div>
           {this.state.currUser}
-          <Geolocation
-            render={({
-              fetchingPosition,
-              position: { coords: { latitude, longitude } = {} } = {},
-              error,
-              getCurrentPosition
-            }) =>
-              <div>
-                <button onClick={getCurrentPosition}>Get Position</button>
-                {error &&
-                  <div>
-                    {error.message}
-                  </div>}
-                <pre>
-                  latitude: {latitude}
-                  longitude: {longitude}
-                </pre>
-              </div>}
-          />
+
         </Header>
         </Grid.Column>
         </Grid.Row>
