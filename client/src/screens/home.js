@@ -43,7 +43,9 @@ class Home extends Component {
       showSunset: '',
       showSunrise: '',
       showTime: '',
-      currUser: ''
+      currUser: '',
+      geolang: "51.0733896",
+      geolong: "-0.23008900000000002"
     };
   }
 
@@ -82,7 +84,7 @@ class Home extends Component {
         date: new Date(),
         fact: "Insert Fact Here"
       })
-    fetch('http://api.openweathermap.org/data/2.5/weather?q=' + this.state.location + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
+    fetch('http://api.openweathermap.org/data/2.5/weather?lat=' + this.state.geolang + '&lon=' + this.state.geolong + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
     .then(function(weather) {
       return weather.json()
       console.log(weather.json())
