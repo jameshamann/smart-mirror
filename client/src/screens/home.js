@@ -43,8 +43,8 @@ class Home extends Component {
       showSunrise: '',
       showTime: '',
       currUser: '',
-      geolang: "51.0733896",
-      geolong: "-0.23008900000000002"
+      geolang: "51.509865",
+      geolong: "-0.118092"
     };
   }
 
