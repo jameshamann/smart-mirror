@@ -13,12 +13,13 @@ import Amplify from 'aws-amplify';
 
 let time = new Date().toLocaleString();
 
-
 class Home extends Component {
+
 
 
   constructor(props) {
     super(props);
+    this.success = this.success.bind(this)
     this.state = {
       time: new Date().toLocaleString(),
       weatherTemp: '',
@@ -42,7 +43,9 @@ class Home extends Component {
       showSunset: '',
       showSunrise: '',
       showTime: '',
-      currUser: ''
+      currUser: '',
+      geolang: "51.509865",
+      geolong: "-0.118092"
     };
   }
 
@@ -64,7 +67,31 @@ class Home extends Component {
     })
   }
 
+success(pos){
+  var self = this;
+  console.log(pos)
+  this.setState({
+    geolang: pos.coords.latitude,
+    geolong: pos.coords.longitude
+  });
+  fetch('http://api.openweathermap.org/data/2.5/weather?lat=' + this.state.geolang + '&lon=' + this.state.geolong + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
+  .then(function(weather) {
+    return weather.json()
+    console.log(weather.json())
+  }).then(function(weather) {
+    self.setState({
+        weatherTemp: weather.main.temp,
+        weatherDesc: weather.weather[0].description,
+        weatherCity: weather.name,
+        weatherIcon: weather.weather[0].icon,
+        weatherSunrise: weather.sys.sunrise,
+        weatherSunset: weather.sys.sunset
+      })
+  })
+}
+
   componentDidMount() {
+    navigator.geolocation.getCurrentPosition(this.success)
     Amplify.addPluggable(new AWSIoTProvider({
       aws_pubsub_region: 'eu-west-2',
       aws_pubsub_endpoint: 'wss://azjo7hto1k82k.iot.eu-west-2.amazonaws.com/mqtt',
@@ -81,7 +108,7 @@ class Home extends Component {
         date: new Date(),
         fact: "Insert Fact Here"
       })
-    fetch('http://api.openweathermap.org/data/2.5/weather?q=' + this.state.location + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
+    fetch('http://api.openweathermap.org/data/2.5/weather?lat=' + this.state.geolang + '&lon=' + this.state.geolong + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
     .then(function(weather) {
       return weather.json()
       console.log(weather.json())
@@ -96,7 +123,7 @@ class Home extends Component {
         })
     })
     setInterval(() => {
-      fetch('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
+      fetch('http://api.openweathermap.org/data/2.5/weather?lat=' + this.state.geolang + '&lon=' + this.state.geolong + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
       .then(function(weather) {
         return weather.json()
         console.log(weather.json())
@@ -258,6 +285,7 @@ state = { visible: true }
         <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showNews}}>
           <div id="news"></div>
           {this.state.currUser}
+
         </Header>
         </Grid.Column>
         </Grid.Row>
