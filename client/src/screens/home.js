@@ -3,12 +3,13 @@ import AnalogClock, { Themes } from 'react-analog-clock';
 import { Card, Icon, Image, Grid, Header, Transition, Divider, Button } from 'semantic-ui-react'
 import moment from 'moment';
 import _ from 'lodash'
-import Calendar from 'react-calendar';
 import tz from 'moment-timezone'
 import Clock from './clock'
 import { PubSub } from 'aws-amplify';
 import { AWSIoTProvider } from 'aws-amplify/lib/PubSub/Providers';
 import Amplify from 'aws-amplify';
+import Calendar from 'react-google-calendar-events-list';
+
 
 
 let time = new Date().toLocaleString();
@@ -212,6 +213,10 @@ state = { visible: true }
 
 
           {dat}
+          <Calendar
+            calendarID="en.orthodox_christianity%23holiday%40group.v.calendar.google.com"
+            apiKey="jameshamann0@gmail.com"
+          />
         </Header>
 
         </Grid.Column>
