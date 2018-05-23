@@ -19,6 +19,7 @@ class Home extends Component {
 
   constructor(props) {
     super(props);
+    this.success = this.success.bind(this)
     this.state = {
       time: new Date().toLocaleString(),
       weatherTemp: '',
@@ -67,8 +68,26 @@ class Home extends Component {
   }
 
 success(pos){
+  var self = this;
   console.log(pos)
-
+  this.setState({
+    geolang: pos.coords.latitude,
+    geolong: pos.coords.longitude
+  });
+  fetch('http://api.openweathermap.org/data/2.5/weather?lat=' + this.state.geolang + '&lon=' + this.state.geolong + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
+  .then(function(weather) {
+    return weather.json()
+    console.log(weather.json())
+  }).then(function(weather) {
+    self.setState({
+        weatherTemp: weather.main.temp,
+        weatherDesc: weather.weather[0].description,
+        weatherCity: weather.name,
+        weatherIcon: weather.weather[0].icon,
+        weatherSunrise: weather.sys.sunrise,
+        weatherSunset: weather.sys.sunset
+      })
+  })
 }
 
   componentDidMount() {
@@ -104,7 +123,7 @@ success(pos){
         })
     })
     setInterval(() => {
-      fetch('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
+      fetch('http://api.openweathermap.org/data/2.5/weather?lat=' + this.state.geolang + '&lon=' + this.state.geolong + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
       .then(function(weather) {
         return weather.json()
         console.log(weather.json())
