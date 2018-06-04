@@ -214,8 +214,8 @@ state = { visible: true }
 
           {dat}
           <Calendar
-            calendarID="jameshamann0@gmail.com"
-            apiKey="AIzaSyADVDGSF2FqSSPsUfRp_gStgJPOVClcP2k"
+            calendarID=process.env.GCAL_CAL_ID
+            apiKey=process.env.GCAL_API_KEY
           />
         </Header>
 
