@@ -214,8 +214,8 @@ state = { visible: true }
 
           {dat}
           <Calendar
-            calendarID=process.env.GCAL_CAL_ID
-            apiKey=process.env.GCAL_API_KEY
+            calendarID={process.env.REACT_APP_GCAL_CAL_ID}
+            apiKey={process.env.REACT_APP_GCAL_API_KEY}
           />
         </Header>
 
