@@ -8,6 +8,7 @@
     "aws-amplify-react": "^0.1.43",
     "children": "^0.2.3",
     "css-loader": "^0.28.10",
+    "dotenv": "^6.0.0",
     "loadash": "^1.0.0",
     "moment": "^2.21.0",
     "moment-timezone": "^0.5.14",
