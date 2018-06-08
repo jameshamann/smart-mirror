@@ -8,7 +8,6 @@ import Clock from './clock'
 import { PubSub } from 'aws-amplify';
 import { AWSIoTProvider } from 'aws-amplify/lib/PubSub/Providers';
 import Amplify from 'aws-amplify';
-import Calendar from 'react-google-calendar-events-list';
 
 
 
@@ -213,10 +212,7 @@ state = { visible: true }
 
 
           {dat}
-          <Calendar
-            calendarID={process.env.REACT_APP_GCAL_CAL_ID}
-            apiKey={process.env.REACT_APP_GCAL_API_KEY}
-          />
+        
         </Header>
 
         </Grid.Column>
