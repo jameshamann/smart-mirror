@@ -10,7 +10,6 @@
     "css-loader": "^0.28.10",
     "dotenv": "^6.0.0",
     "loadash": "^1.0.0",
-    "material-ui": "^1.0.0-beta.41",
     "moment": "^2.21.0",
     "moment-timezone": "^0.5.14",
     "node-sass": "^4.7.2",
