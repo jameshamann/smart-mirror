@@ -29,6 +29,7 @@
     "mqtt": "^2.15.3",
     "node-wifi": "^2.0.4",
     "path": "^0.12.7",
+    "pi-wifi": "^1.2.0",
     "request": "^2.85.0",
     "serve-favicon": "~2.4.5",
     "socket.io": "^2.0.4",
