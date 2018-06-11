@@ -1,12 +1,11 @@
 {
   "name": "react-backend",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "concurrently \"node app.js\" \"electron main.js\""
   },
   "dependencies": {
-    "Smart_Mirror_App": "file:..",
     "aws-iot-device-sdk": "^2.2.1",
     "aws-sdk": "^2.200.0",
     "body-parser": "~1.18.2",
