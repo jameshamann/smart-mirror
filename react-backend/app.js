@@ -11,9 +11,18 @@ var request = require('request'); // for fetching the feed
 var proxy = require('http-proxy-middleware');
 var feed = require("feed-read");
 var app = express();
+var WiFiControl = require('wifi-control');
 
 const FeedMe = require('feedme');
 const http = require('http');
+
+WiFiControl.init({
+   debug: true
+ });
+ WiFiControl.scanForWiFi( function(err, response) {
+  if (err) console.log(err);
+  console.log(response);
+});
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -22,6 +31,7 @@ app.set('views', __dirname + '/views');
 app.use(bodyParser.urlencoded({extended:false}));
 
 app.get('/', function(req, res) {
+
   console.log('From the Server!')
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
