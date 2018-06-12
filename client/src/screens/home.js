@@ -277,7 +277,7 @@ state = { visible: true }
         <Grid.Row>
         <Grid.Column>
           <Header style={{color: 'white', visibility: this.state.showTime}}>
-            <p style={{fontFamily: 'Roboto'}}> {tim} {timeZoneAbbr}</p>
+            <p style={{fontFamily: 'Roboto'}}> {tim}</p>
           </Header>
         </Grid.Column>
         </Grid.Row>
