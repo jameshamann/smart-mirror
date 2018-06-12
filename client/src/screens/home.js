@@ -30,7 +30,6 @@ class Home extends Component {
       weatherSunrise: '',
       location: 'London',
       date: new Date(),
-      currentUser: 'James',
       fact: "Insert Fact Here",
       headline0 : '',
       headline1: '',
@@ -45,7 +44,7 @@ class Home extends Component {
       showTime: '',
       currUser: '',
       geolang: "51.509865",
-      geolong: "-0.118092"
+      geolong: "-0.118092",
     };
   }
 
@@ -174,7 +173,8 @@ state = { visible: true }
  toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
-    const { visible, currUser } = this.state
+    const name = process.env.REACT_APP_NAME
+    const { visible } = this.state
     const now = Date.now()
     const dat = moment().format('dddd, MMMM Do YYYY')
     const tim = moment().format('h:mm a')
@@ -212,7 +212,7 @@ state = { visible: true }
 
 
           {dat}
-        
+
         </Header>
 
         </Grid.Column>
@@ -285,7 +285,7 @@ state = { visible: true }
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showNews}}>
           <div id="news"></div>
-          {this.state.currUser}
+          Hello, {name}
 
         </Header>
         </Grid.Column>
