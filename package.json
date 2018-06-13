@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"node app.js\" \"electron main.js\""
+    "start": "concurrently \"node app.js\" \"electron main.js\"",
+    "dev": "concurrently \"node app.js\" \"cd client && yarn start\""
   },
   "dependencies": {
     "aws-iot-device-sdk": "^2.2.1",
