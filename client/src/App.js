@@ -9,16 +9,6 @@ require('dotenv').config()
 
 
 class App extends Component {
-  state = {facts: []}
-
-  componentDidMount() {
-    // fetch('/facts')
-    //   .then(function(res) {
-    //     console.log(res.json())
-    //   })
-
-  }
-
 
   render() {
     return (

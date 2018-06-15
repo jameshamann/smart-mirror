@@ -1,44 +1,27 @@
 import React, { Component } from 'react';
-import AnalogClock, { Themes } from 'react-analog-clock';
-import { Card, Icon, Image, Grid, Header, Transition, Divider, Button } from 'semantic-ui-react'
+import { Icon, Image, Grid, Header } from 'semantic-ui-react'
 import moment from 'moment';
-import _ from 'lodash'
 import tz from 'moment-timezone'
-import Clock from './clock'
 import { PubSub } from 'aws-amplify';
 import { AWSIoTProvider } from 'aws-amplify/lib/PubSub/Providers';
 import Amplify from 'aws-amplify';
 
-
-
-let time = new Date().toLocaleString();
-
 class Home extends Component {
-
-
 
   constructor(props) {
     super(props);
     this.success = this.success.bind(this)
     this.state = {
-      time: new Date().toLocaleString(),
       weatherTemp: '',
       weatherDesc: '',
       weatherCity: '',
       weatherIcon: '',
       weatherSunset: '',
       weatherSunrise: '',
-      location: 'London',
       date: new Date(),
-      fact: "Insert Fact Here",
-      headline0 : '',
-      headline1: '',
-      headline2: '',
-      headline3: '',
-      headline4: '',
       showWeather: '',
       showDate: '',
-      showNews: '',
+      showGreeting: '',
       showSunset: '',
       showSunrise: '',
       showTime: '',
@@ -52,10 +35,8 @@ class Home extends Component {
     var self = this;
     fetch('/news')
     .then(function(res){
-      console.log(res)
       return res.json()
     }).then(function(json){
-      console.log("HELLO")
       self.setState({
         headline0: json[0].title,
         headline1: json[1].title,
@@ -68,7 +49,6 @@ class Home extends Component {
 
 success(pos){
   var self = this;
-  console.log(pos)
   this.setState({
     geolang: pos.coords.latitude,
     geolong: pos.coords.longitude
@@ -76,7 +56,6 @@ success(pos){
   fetch('http://api.openweathermap.org/data/2.5/weather?lat=' + this.state.geolang + '&lon=' + this.state.geolong + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
   .then(function(weather) {
     return weather.json()
-    console.log(weather.json())
   }).then(function(weather) {
     self.setState({
         weatherTemp: weather.main.temp,
@@ -110,7 +89,6 @@ success(pos){
     fetch('http://api.openweathermap.org/data/2.5/weather?lat=' + this.state.geolang + '&lon=' + this.state.geolong + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
     .then(function(weather) {
       return weather.json()
-      console.log(weather.json())
     }).then(function(weather) {
       self.setState({
           weatherTemp: weather.main.temp,
@@ -125,7 +103,6 @@ success(pos){
       fetch('http://api.openweathermap.org/data/2.5/weather?lat=' + this.state.geolang + '&lon=' + this.state.geolong + '&APPID=e064e1033e86a9347cfcc7da69705933&units=metric')
       .then(function(weather) {
         return weather.json()
-        console.log(weather.json())
       }).then(function(weather) {
         self.setState({
             weatherTemp: weather.main.temp,
@@ -150,7 +127,6 @@ toTitleCase(str)
     }
 
 userGreeting(date){
-  console.log(date)
   if (date < '12') {
     return "Good Morning"
   }
@@ -175,7 +151,7 @@ state = { visible: true }
   render() {
     const name = process.env.REACT_APP_NAME
     const { visible } = this.state
-    const now = Date.now()
+    const now = new Date()
     const dat = moment().format('dddd, MMMM Do YYYY')
     const tim = moment().format('h:mm a')
     const timeZone = moment.tz.guess();
@@ -183,22 +159,6 @@ state = { visible: true }
     const {fact, date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise, headlines} = this.state;
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
-    console.log(this.formatDate(this.state.date, 'dd'))
-    const currHeadlines = [this.state.headline0, this.state.headline1, this.state.headline2, this.state.headline3, this.state.headline4];
-    console.log(currHeadlines)
-      setInterval(function() {
-              let arr = currHeadlines;
-              let last = arr.shift();
-              arr.push(last)
-              if (arr.length == 0) {
-                console.log(currHeadlines)
-            }
-              document
-                .getElementById('news')
-                .innerHTML = last
-                console.log(last)
-      }, 10000);
-
     return (
 
       <Grid columns='equal' style={{padding: '20px'}}>
@@ -209,17 +169,10 @@ state = { visible: true }
       <Grid.Row>
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showDate}}>
-
-
           {dat}
-
         </Header>
-
         </Grid.Column>
-
         <Grid.Column>
-
-
         </Grid.Column>
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showWeather}}>
@@ -238,65 +191,18 @@ state = { visible: true }
           </p>
         </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
+        <Grid.Row verticalAlign='bottom'>
         <Grid.Column>
-          <Header style={{color: 'white', visibility: this.state.showTime}}>
-            <p style={{fontFamily: 'Roboto'}}> {tim}</p>
-          </Header>
-        </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-        <Grid.Column>
-        <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showNews}}>
-          <div id="news"></div>
-          Hello, {name}
+        <Header style={{color: 'white', visibility: this.state.showTime}}>
+          <p style={{fontFamily: 'Roboto'}}> {tim}</p>
+        </Header>
+        <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showGreeting}}>
+
+          {this.userGreeting(now.getHours())}, {name}
 
         </Header>
         </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-        <Grid.Column>
-
-
-        </Grid.Column>
-
-      </Grid.Row>
     </Grid>
 
     );

@@ -1,3 +1,1 @@
-# Smart Mirror Client App
-
-IoT Node/React App for Smart Mirror.
+node server.js --host-name=azjo7hto1k82k.iot.eu-west-2.amazonaws.com --private-key=../../mac_os_iot_certs/Smart_Mirror_Mac.private.key --client-certificate=../../mac_os_iot_certs/Smart_Mirror_Mac.cert.pem --ca-certificate=../../mac_os_iot_certs/root-CA.crt
