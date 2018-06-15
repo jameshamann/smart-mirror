@@ -175,7 +175,7 @@ state = { visible: true }
   render() {
     const name = process.env.REACT_APP_NAME
     const { visible } = this.state
-    const now = Date.now()
+    const now = new Date()
     const dat = moment().format('dddd, MMMM Do YYYY')
     const tim = moment().format('h:mm a')
     const timeZone = moment.tz.guess();
@@ -183,9 +183,7 @@ state = { visible: true }
     const {fact, date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise, headlines} = this.state;
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
-    console.log(this.formatDate(this.state.date, 'dd'))
     const currHeadlines = [this.state.headline0, this.state.headline1, this.state.headline2, this.state.headline3, this.state.headline4];
-    console.log(currHeadlines)
       setInterval(function() {
               let arr = currHeadlines;
               let last = arr.shift();
@@ -238,42 +236,7 @@ state = { visible: true }
           </p>
         </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
-        <Grid.Row>
-        </Grid.Row>
+
         <Grid.Row>
         <Grid.Column>
           <Header style={{color: 'white', visibility: this.state.showTime}}>
@@ -285,7 +248,7 @@ state = { visible: true }
         <Grid.Column>
         <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showNews}}>
           <div id="news"></div>
-          Hello, {name}
+          {this.userGreeting(now.getHours())}, {name}
 
         </Header>
         </Grid.Column>
