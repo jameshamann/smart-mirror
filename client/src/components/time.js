@@ -64,16 +64,16 @@ state = { visible: true }
     const timeZone = moment.tz.guess();
     const timeZoneAbbr = moment.tz(timeZone).zoneAbbr()
     return (
+      <div>
+        <Header style={{color: 'white', visibility: this.state.showTime}}>
+          <p style={{fontFamily: 'Roboto'}}> {tim}</p>
+        </Header>
+        <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showGreeting}}>
 
-      <Header style={{color: 'white', visibility: this.state.showTime}}>
-        <p style={{fontFamily: 'Roboto'}}> {tim}</p>
-      </Header>
-      <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showGreeting}}>
+          {this.userGreeting(now.getHours())}, {name}
 
-        {this.userGreeting(now.getHours())}, {name}
-
-      </Header>
-
+        </Header>
+      </div>
     );
   }
 }

@@ -47,15 +47,6 @@ success(pos){
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(this.success)
-    Amplify.addPluggable(new AWSIoTProvider({
-      aws_pubsub_region: 'eu-west-2',
-      aws_pubsub_endpoint: 'wss://azjo7hto1k82k.iot.eu-west-2.amazonaws.com/mqtt',
-    }));
-    PubSub.subscribe('myTopic').subscribe({
-      next: data => this.setState({currUser: data.value.msg}),
-      error: error => console.error(error),
-      close: () => console.log('Done'),
-    });
     var self = this;
     var dat = this.state.weatherData
     this.setState({
@@ -109,14 +100,15 @@ toTitleCase(str)
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
     return (
+      <div>
 
 
-        <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showWeather}}>
+      <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showWeather}}>
         {this.state.weatherCity} {this.state.weatherTemp}°C <br />
         <Image src={"http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"} /> <br />
         {this.toTitleCase(this.state.weatherDesc)}
 
-        </Header>
+      </Header>
         <br />
           <p style={{fontFamily: 'Roboto', color: "white", visibility: this.state.showSunrise}}>
           <Icon name="sun" /> {sunrise}
@@ -125,6 +117,7 @@ toTitleCase(str)
           <p style={{fontFamily: 'Roboto', color: "white", visibility: this.state.showSunset}}>
           <Icon name="moon" /> {sunset}
         </p>
+      </div>
     );
   }
 }

@@ -7,11 +7,10 @@ import { AWSIoTProvider } from 'aws-amplify/lib/PubSub/Providers';
 import Amplify from 'aws-amplify';
 import News from '../components/news'
 
-class Date extends Component {
+class DisplayDate extends Component {
 
   constructor(props) {
     super(props);
-    this.success = this.success.bind(this)
     this.state = {
       date: new Date(),
       showTime: ''
@@ -54,4 +53,4 @@ formatDate(value, format){
   }
 }
 
-export default Date;
+export default DisplayDate;
