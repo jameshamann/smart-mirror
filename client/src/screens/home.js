@@ -32,22 +32,6 @@ class Home extends Component {
     };
   }
 
- getNews(){
-    var self = this;
-    fetch('/news')
-    .then(function(res){
-      return res.json()
-    }).then(function(json){
-      self.setState({
-        headline0: json[0].title,
-        headline1: json[1].title,
-        headline2: json[2].title,
-        headline3: json[3].title,
-        headline4: json[4].title
-      })
-    })
-  }
-
 success(pos){
   var self = this;
   this.setState({
@@ -157,7 +141,7 @@ state = { visible: true }
     const tim = moment().format('h:mm a')
     const timeZone = moment.tz.guess();
     const timeZoneAbbr = moment.tz(timeZone).zoneAbbr()
-    const {fact, date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise, headlines} = this.state;
+    const {fact, date, weatherTemp, weatherDesc, weatherCity, weatherIcon, weatherSunrise} = this.state;
     const sunrise = moment(this.state.weatherSunrise, 'X').format('h:mm a')
     const sunset = moment(this.state.weatherSunset, 'X').format('h:mm a')
     return (
