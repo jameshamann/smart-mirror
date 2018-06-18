@@ -5,6 +5,7 @@ import tz from 'moment-timezone'
 import { PubSub } from 'aws-amplify';
 import { AWSIoTProvider } from 'aws-amplify/lib/PubSub/Providers';
 import Amplify from 'aws-amplify';
+import News from '../components/news'
 
 class Home extends Component {
 
