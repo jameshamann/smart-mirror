@@ -24,14 +24,22 @@ class CryptoPrice extends Component {
   }
 
   componentDidMount() {
+    var self = this;
     console.log("MOUNT")
     fetch('/crypto')
     .then(function(res) {
-      console.log(res.json())
+      return res.json()
     })
+    .then(function(data){
+      self.setState({
+        currPrice: data
+      })
+    })
+
   }
 
   render() {
+    console.log(this.state.currPrice)
     return (
       <Header style={{color: 'white', fontFamily: 'Roboto'}}>Hello!</Header>
     );
