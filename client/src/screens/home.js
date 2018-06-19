@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Image, Grid, Header } from 'semantic-ui-react'
+import { Icon, Image, Grid, Header, Container } from 'semantic-ui-react'
 import moment from 'moment';
 import tz from 'moment-timezone'
 import { PubSub } from 'aws-amplify';
@@ -15,13 +15,9 @@ class Home extends Component {
 
   render() {
       return (
-      <Grid columns='equal' style={{padding: '20px'}}>
-      <Grid.Row>
-      </Grid.Row>
-      <Grid.Row>
+      <Grid celled columns={3}>
 
-      </Grid.Row>
-      <Grid.Row>
+      <Grid.Row verticalAlign='top'>
         <Grid.Column>
           <DisplayDate />
         </Grid.Column>
@@ -33,14 +29,12 @@ class Home extends Component {
         </Grid.Row>
         <Grid.Row verticalAlign='bottom'>
         <Grid.Column>
-          <Time />
-          <br />
-          <br />
-          <CryptoPrice />
+        </Grid.Column>
+        <Grid.Column>
+        <CryptoPrice />
         </Grid.Column>
         </Grid.Row>
     </Grid>
-
     );
   }
 }

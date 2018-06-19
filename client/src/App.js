@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import { Container } from 'semantic-ui-react'
 import './App.css';
 import Home from './screens/home.js'
 import { PubSub } from 'aws-amplify';
