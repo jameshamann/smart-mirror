@@ -15,11 +15,12 @@ class Home extends Component {
 
   render() {
       return (
-      <Grid celled columns={3}>
+      <Grid columns={3} style={{'padding': "70px", 'height': '100%'}}>
 
-      <Grid.Row verticalAlign='top'>
+    <Grid.Row verticalAlign="top">
         <Grid.Column>
           <DisplayDate />
+          <CryptoPrice />
         </Grid.Column>
         <Grid.Column>
         </Grid.Column>
@@ -27,12 +28,17 @@ class Home extends Component {
           <Weather />
         </Grid.Column>
         </Grid.Row>
-        <Grid.Row verticalAlign='bottom'>
+        <Grid.Row verticalAlign="bottom">
         <Grid.Column>
         </Grid.Column>
         <Grid.Column>
-        <CryptoPrice />
+          <Time />
+          <br />
         </Grid.Column>
+        <Grid.Column>
+        </Grid.Column>
+
+
         </Grid.Row>
     </Grid>
     );

@@ -40,6 +40,7 @@ class CryptoPrice extends Component {
 
   render() {
     return (
+
       <p style={{color: 'white', fontFamily: 'Roboto'}}>
       ETH: £{this.state.ethPrice}
       <br />
