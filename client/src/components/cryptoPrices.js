@@ -19,13 +19,6 @@ class CryptoPrice extends Component {
   }
 
   getCurrentPrice(){
-    fetch('/crypto')
-    .then(function(res) {
-      console.log(res)
-    })
-  }
-
-  componentDidMount() {
     var self = this;
     fetch('/crypto')
     .then(function(res) {
@@ -38,7 +31,10 @@ class CryptoPrice extends Component {
         ltcPrice: data.LTC
       })
     })
+  }
 
+  componentDidMount() {
+    this.getCurrentPrice()
   }
 
   render() {
