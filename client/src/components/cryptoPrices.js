@@ -41,7 +41,7 @@ class CryptoPrice extends Component {
   render() {
     console.log(this.state.currPrice)
     return (
-      <Header style={{color: 'white', fontFamily: 'Roboto'}}>Hello!</Header>
+      <Header style={{color: 'white', fontFamily: 'Roboto'}}>Eth Price: {this.state.currPrice.BTC} BTC, €{this.state.currPrice.EUR}, ${this.state.currPrice.USD}</Header>
     );
   }
 }
