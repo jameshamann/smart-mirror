@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Image, Grid, Header } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
 import moment from 'moment';
 import tz from 'moment-timezone'
 import { PubSub } from 'aws-amplify';
@@ -12,7 +12,9 @@ class CryptoPrice extends Component {
     super(props);
     this.getCurrentPrice = this.getCurrentPrice.bind(this);
     this.state = {
-      currPrice: ''
+      ethPrice: '',
+      btcPrice: '',
+      ltcPrice: ''
     };
   }
 
@@ -25,23 +27,29 @@ class CryptoPrice extends Component {
 
   componentDidMount() {
     var self = this;
-    console.log("MOUNT")
     fetch('/crypto')
     .then(function(res) {
       return res.json()
     })
     .then(function(data){
       self.setState({
-        currPrice: data
+        ethPrice: data.ETH,
+        btcPrice: data.BTC,
+        ltcPrice: data.LTC
       })
     })
 
   }
 
   render() {
-    console.log(this.state.currPrice)
     return (
-      <Header style={{color: 'white', fontFamily: 'Roboto'}}>Eth Price: {this.state.currPrice.BTC} BTC, €{this.state.currPrice.EUR}, ${this.state.currPrice.USD}</Header>
+      <p style={{color: 'white', fontFamily: 'Roboto'}}>
+      ETH Price: £{this.state.ethPrice.GBP}, €{this.state.ethPrice.EUR}, ${this.state.ethPrice.USD},
+      <br />
+      BTC Price: £{this.state.btcPrice.GBP}, €{this.state.btcPrice.EUR}, ${this.state.btcPrice.USD},
+      <br />
+      LTC Price: £{this.state.ltcPrice.GBP}, €{this.state.ltcPrice.EUR}, ${this.state.ltcPrice.USD}
+      </p>
     );
   }
 }

@@ -34,8 +34,8 @@ class Home extends Component {
         <Grid.Row verticalAlign='bottom'>
         <Grid.Column>
           <Time />
-        </Grid.Column>
-        <Grid.Column>
+          <br />
+          <br />
           <CryptoPrice />
         </Grid.Column>
         </Grid.Row>

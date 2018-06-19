@@ -48,7 +48,7 @@ app.get('/facts', function(req, res) {
 });
 
 app.get('/crypto', function(req, res) {
-  fetch('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=BTC,USD,EUR')
+  fetch('https://min-api.cryptocompare.com/data/pricemulti?fsyms=ETH,BTC,LTC&tsyms=USD,EUR,GBP')
   	.then(res => res.json())
   	.then(data => res.json(data));
 
