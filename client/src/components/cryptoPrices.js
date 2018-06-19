@@ -26,12 +26,13 @@ class CryptoPrice extends Component {
     })
     .then(function(data){
       self.setState({
-        ethPrice: data.ETH,
-        btcPrice: data.BTC,
-        ltcPrice: data.LTC
+        ethPrice: data.ETH.GBP,
+        btcPrice: data.BTC.GBP,
+        ltcPrice: data.LTC.GBP
       })
     })
   }
+
 
   componentDidMount() {
     this.getCurrentPrice()
@@ -40,11 +41,11 @@ class CryptoPrice extends Component {
   render() {
     return (
       <p style={{color: 'white', fontFamily: 'Roboto'}}>
-      ETH Price: £{this.state.ethPrice.GBP}
+      ETH: £{this.state.ethPrice}
       <br />
-      BTC Price: £{this.state.btcPrice.GBP}
+      BTC: £{this.state.btcPrice}
       <br />
-      LTC Price: £{this.state.ltcPrice.GBP}
+      LTC: £{this.state.ltcPrice}
       </p>
     );
   }
