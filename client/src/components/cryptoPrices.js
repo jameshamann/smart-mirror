@@ -40,11 +40,11 @@ class CryptoPrice extends Component {
   render() {
     return (
       <p style={{color: 'white', fontFamily: 'Roboto'}}>
-      ETH Price: £{this.state.ethPrice.GBP}, €{this.state.ethPrice.EUR}, ${this.state.ethPrice.USD},
+      ETH Price: £{this.state.ethPrice.GBP}
       <br />
-      BTC Price: £{this.state.btcPrice.GBP}, €{this.state.btcPrice.EUR}, ${this.state.btcPrice.USD},
+      BTC Price: £{this.state.btcPrice.GBP}
       <br />
-      LTC Price: £{this.state.ltcPrice.GBP}, €{this.state.ltcPrice.EUR}, ${this.state.ltcPrice.USD}
+      LTC Price: £{this.state.ltcPrice.GBP}
       </p>
     );
   }
