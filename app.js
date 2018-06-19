@@ -13,6 +13,7 @@ var feed = require("feed-read");
 var app = express();
 var WiFiControl = require('wifi-control');
 
+const fetch = require('node-fetch');
 const FeedMe = require('feedme');
 const http = require('http');
 
@@ -45,6 +46,15 @@ app.get('/facts', function(req, res) {
       username: "D0loresH4ze"
     }]);
 });
+
+app.get('/crypto', function(req, res) {
+  fetch('https://min-api.cryptocompare.com/data/pricemulti?fsyms=ETH,BTC,LTC&tsyms=USD,EUR,GBP')
+  	.then(res => res.json())
+  	.then(data => res.json(data));
+
+});
+
+
 
 
 
