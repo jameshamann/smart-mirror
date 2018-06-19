@@ -43,11 +43,9 @@ formatDate(value, format){
     const timeZone = moment.tz.guess();
     const timeZoneAbbr = moment.tz(timeZone).zoneAbbr()
     return (
-      <div>
         <Header style={{color: 'white', fontFamily: 'Roboto', visibility: this.state.showDate}}>
           {dat}
         </Header>
-     </div>
 
     );
   }

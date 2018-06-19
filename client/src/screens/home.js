@@ -15,12 +15,14 @@ class Home extends Component {
 
   render() {
       return (
-      <Grid columns={3} style={{'padding': "70px", 'height': '100%'}}>
+      <Grid columns='equal' style={{'padding': "20px", 'height': '100%'}}>
 
-    <Grid.Row verticalAlign="top">
+    <Grid.Row>
         <Grid.Column>
           <DisplayDate />
           <CryptoPrice />
+        </Grid.Column>
+        <Grid.Column>
         </Grid.Column>
         <Grid.Column>
         </Grid.Column>
