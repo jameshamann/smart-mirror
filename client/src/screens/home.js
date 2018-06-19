@@ -9,11 +9,9 @@ import News from '../components/news'
 import Time from '../components/time'
 import DisplayDate from '../components/date'
 import Weather from '../components/weather'
-
+import CryptoPrice from '../components/cryptoPrices.js'
 
 class Home extends Component {
-
-
 
   render() {
       return (
@@ -21,6 +19,7 @@ class Home extends Component {
       <Grid.Row>
       </Grid.Row>
       <Grid.Row>
+
       </Grid.Row>
       <Grid.Row>
         <Grid.Column>
@@ -35,6 +34,9 @@ class Home extends Component {
         <Grid.Row verticalAlign='bottom'>
         <Grid.Column>
           <Time />
+        </Grid.Column>
+        <Grid.Column>
+          <CryptoPrice />
         </Grid.Column>
         </Grid.Row>
     </Grid>
