@@ -17,12 +17,39 @@ Rasberry Pi Installation
 
 List Rasberry Pi Gear
 
+## Configuration File
+
+name: "James Hamann"
+
+city: "London"
+
+news_provider: "BBC News"
+
+display_cryptos: "True"
 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
 
 Say what the step will be
+
+Step One
+
+* Clone Repo and Install Dependancies
+
+Step two
+
+* Set Config Values
+
+Step three
+
+* Run Build Script
+
+Step four:
+
+* Run Prod Command
+
+
 
 ```
 Give the example
@@ -35,6 +62,9 @@ until finished
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
+
+
+
 
 ## Running the tests
 
@@ -56,7 +86,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **James Hamann** 
+* **James Hamann**
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
